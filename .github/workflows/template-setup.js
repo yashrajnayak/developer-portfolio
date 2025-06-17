@@ -210,8 +210,6 @@ function createInitialReadme(fullName, githubUsername, portfolioUrl, repoName) {
 5. **Enable GitHub Pages** in [repository settings](https://github.com/${githubUsername}/${repoName}/settings/pages) to make your portfolio live
 6. **Customize further** by adding more content
 
-> This section will be removed when you run [this workflow](${repoUrl}/actions/workflows/update-readme.yml) after editing [\`config.json\`](${repoUrl}/blob/main/config.json).
-
 ---
 
 # ${fullName} - Developer Portfolio
