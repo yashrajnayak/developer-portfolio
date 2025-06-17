@@ -55,6 +55,26 @@
           "Managed end-to-end execution, including website management, venue logistics, emceeing, speakers and attendee engagement."
         ],
         "picture": "assets/projects/GitHub_Constellation_2024.jpeg"
+      },
+      {
+        "name": "GitTogethers Registration Web Platform",
+        "date": "2024",
+        "description": [
+          "Modern responsive web application for developer event registration and check-in management",
+          "GitHub API integration with smart event filtering, form validation, and mobile optimization",
+          "Tech Stack: Vanilla JavaScript (ES6), jQuery, CSS Grid/Flexbox, GitHub API"
+        ],
+        "picture": "assets/projects/GitTogethers_Registration_Web_Platform.png"
+      },
+      {
+        "name": "GitTogether Meetups Automation System",
+        "date": "2024",
+        "description": [
+          "4-stage GitHub Actions pipeline with multi-repository orchestration and API integration",
+          "Automated issue creation, assignment, and lifecycle management with 80% reduction in manual overhead",
+          "Tech Stack: Node.js, GitHub Actions, GraphQL/REST APIs, YAML configuration management"
+        ],
+        "picture": "assets/projects/GitTogether_Meetups_Automation_System.png"
       }
     ]
   },

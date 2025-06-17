@@ -60,7 +60,8 @@ function createDefaultConfig(fullName, githubUsername, portfolioUrl) {
             "A modern, responsive portfolio website built with vanilla JavaScript",
             "Features dark/light mode, dynamic content loading, and GitHub integration",
             "Fully configurable through JSON with automated README generation"
-          ]
+          ],
+          "picture": "assets/projects/Placeholder.png"
         }
       ]
     },
@@ -77,8 +78,8 @@ function createDefaultConfig(fullName, githubUsername, portfolioUrl) {
             "Mention any notable projects or impact metrics",
             "Update this section with your actual work experience"
           ],
-          "logo": "assets/logos/your-company-logo.png",
-          "logo_dark": "assets/logos/your-company-logo-white.png"
+          "logo": "assets/logos/Placeholder_Logo.png",
+          "logo_dark": "assets/logos/Placeholder_Logo.png"
         }
       ]
     },
@@ -133,7 +134,22 @@ function cleanupTemplateFiles() {
   const filesToRemove = [
     '.github/workflows/template-setup.yml',
     '.github/workflows/template-setup.js',
-    'assets/portfolio-generator-explainer.png'
+    'assets/portfolio-generator-explainer.png',
+    // Remove all logos except placeholder
+    'assets/logos/ANSR_Logo.png',
+    'assets/logos/ANSR_Logo_White.png',
+    'assets/logos/GitHub_Logo.png',
+    'assets/logos/GitHub_Logo_White.png',
+    'assets/logos/OutSystems_Logo.png',
+    'assets/logos/OutSystems_Logo_White.png',
+    'assets/logos/Progate_Logo.png',
+    'assets/logos/Progate_Logo_White.png',
+    'assets/logos/Skillenza_Logo.png',
+    'assets/logos/Skillenza_Logo_White.png',
+    // Remove all project images except placeholder
+    'assets/projects/GitHub_Constellation_2024.jpeg',
+    'assets/projects/GitTogether_Meetups_Automation_System.png',
+    'assets/projects/GitTogethers_Registration_Web_Platform.png'
   ];
 
   const dirsToRemove = [
