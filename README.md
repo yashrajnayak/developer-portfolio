@@ -8,7 +8,7 @@ A modern, fully configurable developer portfolio that adapts to your content. Bu
 
 </div>
 
-![image](https://github.com/user-attachments/assets/643b5db1-bfd3-4755-9872-8a9976835f38)
+![image](https://github.com/user-attachments/assets/57db89c3-cb51-4aac-b9df-800c7c4a811d)
 
 ## ✨ Key Features
 
