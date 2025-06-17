@@ -61,7 +61,11 @@ function createDefaultConfig(fullName, githubUsername, portfolioUrl) {
             "Features dark/light mode, dynamic content loading, and GitHub integration",
             "Fully configurable through JSON with automated README generation"
           ],
-          "picture": "assets/projects/Placeholder.png"
+          "picture": "assets/projects/Placeholder.png",
+          "link": {
+            "url": portfolioUrl,
+            "title": "View Live Site"
+          }
         }
       ]
     },

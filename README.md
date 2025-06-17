@@ -18,6 +18,7 @@ A modern, fully configurable developer portfolio that adapts to your content. Bu
 - 🚀 **GitHub Integration**: Automatically shows repositories with "featured" topic
 - ⚙️ **Zero Code Changes**: Everything configured through JSON
 - 📊 **Flexible Content**: Add 1 project or 100 projects - website adapts automatically
+- 🔗 **Project Links**: Add links to live demos, repositories, or project pages for each project
 - ⚡ **Performance Optimized**: Fast loading with lazy images and efficient DOM updates
 - 🏗️ **Modular Architecture**: Clean, maintainable codebase with separated concerns
 - 🤖 **Auto-Setup**: Automatically initializes your portfolio when you use the template

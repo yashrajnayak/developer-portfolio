@@ -91,6 +91,26 @@
     overflow: visible;
 }
 
+/* Project Content Links */
+.project-content .project-links {
+    margin-top: 1rem;
+    position: static;
+    bottom: auto;
+    left: auto;
+}
+
+.project-content .project-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.project-content .project-links a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
 /* Desktop: Hide project header, show content directly */
 @media (min-width: 769px) {
     .project-header {
@@ -153,6 +173,26 @@
     position: absolute;
     left: 0;
     color: var(--text-muted);
+}
+
+/* Project Links */
+.project-content .project-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.project-content .project-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.project-content .project-links a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
 }
 
 /* Project Image */

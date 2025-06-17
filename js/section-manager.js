@@ -144,6 +144,13 @@ export class SectionManager {
                 <ul>
                     ${descriptionHtml}
                 </ul>
+                ${project.link ? `
+                <div class="project-links">
+                    <a href="${typeof project.link === 'object' ? project.link.url : project.link}" target="_blank" rel="noopener noreferrer" aria-label="View ${project.name} project">
+                        ${typeof project.link === 'object' ? (project.link.title || 'View Project') : 'View Project'}
+                    </a>
+                </div>
+                ` : ''}
             </div>
             ${project.picture ? `
             <div class="project-image">

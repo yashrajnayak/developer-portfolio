@@ -79,12 +79,22 @@ Completely dynamic - add 1 project or 100:
           "First description point",
           "Second description point"
         ],
-        "picture": "assets/projects/image.jpg"  // Optional
+        "picture": "assets/projects/image.jpg", // Optional
+        "link": {                               // Optional: Link to project
+          "url": "https://your-project-url.com",
+          "title": "View Live Demo"             // Custom link text
+        }
       }
     ]
   }
 }
 ```
+
+**Link Options:**
+- `url`: The URL to link to (required if link object is provided)
+- `title`: Custom text for the link (optional, defaults to "View Project")
+
+Examples of link titles: "View Live Demo", "View Repository", "Read Case Study", "Try It Out"
 
 ## 💼 Experience Section
 
