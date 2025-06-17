@@ -1,0 +1,147 @@
+/* Footer Styles */
+.footer {
+    background-color: var(--card-background);
+    margin-top: 4rem;
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+    transition: var(--transition);
+}
+
+.footer-content:hover {
+    transform: translateY(-2px);
+}
+
+.footer-tagline {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-social a {
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    color: var(--text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 45px;
+    height: 45px;
+}
+
+.footer-social a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.footer-social svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.footer-social a:hover svg {
+    transform: scale(1.1);
+}
+
+.footer-bottom {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    opacity: 0.8;
+}
+
+.footer-built-with {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* Responsive Design for Footer */
+@media (max-width: 768px) {
+    .footer {
+        padding: 2.5rem 1.5rem 1.5rem;
+        margin-top: 3rem;
+    }
+    
+    .footer-content {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .footer-tagline {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .footer-social {
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .footer-social a {
+        min-width: 42px;
+        height: 42px;
+        padding: 0.6rem;
+    }
+    
+    .footer-social svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 2rem 1rem 1rem;
+    }
+    
+    .footer-content {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .footer-tagline {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .footer-social {
+        gap: 0.5rem;
+    }
+    
+    .footer-social a {
+        min-width: 40px;
+        height: 40px;
+    }
+    
+    .footer-social svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .footer-built-with {
+        font-size: 0.85rem;
+    }
+}

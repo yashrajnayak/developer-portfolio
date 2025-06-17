@@ -1,0 +1,127 @@
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 1rem;
+    }
+    
+    .profile-img {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .social-links {
+        gap: 0.75rem;
+        justify-content: center;
+    }
+    
+    .social-links a {
+        flex: 0 1 auto;
+        min-width: 120px;
+        max-width: 180px;
+        padding: 0.625rem 1rem;
+        font-size: 0.875rem;
+        justify-content: center;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-category {
+        text-align: center;
+    }
+    
+    .skill-category li {
+        padding-left: 0;
+    }
+    
+    .skill-category li::before {
+        display: none;
+    }
+     .experience-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .experience-header-content {
+        width: 100%;
+    }
+
+    .experience-content {
+        padding: 0;
+        text-align: left;
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .experience-item.expanded .experience-content {
+        padding: 0 1rem 1.5rem;
+        max-height: 500px;
+    }
+    
+    .company-logo {
+        width: 180px;
+        margin: 0 auto;
+        order: 2;
+    }
+
+    .company-logo img {
+        max-height: 40px;
+    }
+
+    .project-item {
+        flex-direction: column;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    /* Show project header on mobile for accordion */
+    .project-header {
+        display: flex !important;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    /* Hide project content by default on mobile */
+    .project-content {
+        width: 100%;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Show project content when expanded */
+    .project-item.expanded .project-content {
+        padding: 0 1.5rem 1.5rem;
+        max-height: 500px;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .project-content ul {
+        text-align: left;
+    }
+    
+    .project-image {
+        width: 100%;
+        min-height: unset;
+        aspect-ratio: 16/9;
+        order: 2;
+    }
+
+    .project-card {
+        text-align: center;
+    }
+    
+    .project-links {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+}

@@ -1,0 +1,263 @@
+/* Projects Section */
+.projects h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.project-item {
+    display: flex;
+    margin-bottom: 1.5rem;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.project-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Project Header (for mobile accordion) */
+.project-header {
+    display: none; /* Hidden by default, shown on mobile */
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    gap: 1rem;
+}
+
+
+
+/* Project Header (mobile accordion) */
+.project-header {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    gap: 1rem;
+}
+
+/* Project Header Content */
+.project-header-content {
+    flex: 1;
+    text-align: center;
+    width: 100%;
+}
+
+.project-header-content h3 {
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+.project-header-content .date {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Project Accordion Toggle */
+.project-accordion-toggle {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+}
+
+.project-item.expanded .project-accordion-toggle {
+    transform: rotate(180deg);
+}
+
+/* Project Content */
+.project-content {
+    flex: 1;
+    width: 50%;
+    padding: 1.5rem;
+    max-height: none;
+    overflow: visible;
+}
+
+/* Desktop: Hide project header, show content directly */
+@media (min-width: 769px) {
+    .project-header {
+        display: none !important;
+    }
+    
+    .project-content {
+        padding: 1.5rem;
+        max-height: none;
+        overflow: visible;
+    }
+    
+    .project-content-desktop {
+        display: block;
+    }
+}
+
+/* Mobile: Hide desktop content titles, show mobile header */
+@media (max-width: 768px) {
+    .project-content-desktop {
+        display: none;
+    }
+}
+
+.project-content h3 {
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+.project-content .date {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.project-content-desktop h3 {
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+.project-content-desktop .date {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.project-content ul {
+    list-style: none;
+    color: var(--text-muted);
+}
+
+.project-content li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.project-content li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+}
+
+/* Project Image */
+.project-image {
+    width: 50%;
+    height: auto;
+    min-height: 250px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Projects on GitHub Section */
+.projects-on-github h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+}
+
+.project-card {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    animation: slideUp 0.5s ease;
+    animation-fill-mode: both;
+    transition: var(--transition);
+    position: relative;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-card h3 {
+    color: var(--heading-color);
+    margin-bottom: 0.75rem;
+}
+
+.project-card p {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    flex: 1;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+}
+
+.project-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.project-links a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+/* See All Repositories Link */
+.see-all-repos {
+    text-align: center;
+    margin-top: 2rem;
+    animation: fadeIn 0.5s ease;
+}
+
+.see-all-repos a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    background-color: var(--card-background);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.see-all-repos a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}

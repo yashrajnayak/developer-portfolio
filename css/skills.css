@@ -1,0 +1,54 @@
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-category {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    text-align: left;
+}
+
+.skill-category:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.skill-category h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+.skill-category ul {
+    list-style: none;
+    color: var(--text-muted);
+}
+
+.skill-category li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.skill-category li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+}
+
+/* Certification links styling */
+.skill-category li a {
+    color: var(--text-muted);
+    text-decoration: underline;
+    transition: var(--transition);
+}
+
+.skill-category li a:hover {
+    opacity: 0.8;
+}

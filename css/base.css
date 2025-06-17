@@ -1,0 +1,71 @@
+/* Modern CSS Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Custom Properties */
+:root {
+    --primary-color: #2563eb;
+    --primary-color-dark: #1e40af;
+    --secondary-color: #1e293b;
+    --background-color: #f8fafc;
+    --card-background: #ffffff;
+    --text-color: #1e293b;
+    --text-muted: #64748b;
+    --heading-color: #2563eb;
+    --border-color: #e2e8f0;
+    --border-radius: 1rem;
+    --transition: all 0.3s ease;
+    --focus-ring-color: #3b82f6;
+    --focus-ring-offset: 3px;
+}
+
+/* Dark mode */
+:root[data-theme="dark"] {
+    --primary-color-dark: #3b82f6;
+    --background-color: #0f172a;
+    --card-background: #1e293b;
+    --text-color: #f1f5f9;
+    --text-muted: #94a3b8;
+    --heading-color: #60a5fa;
+    --border-color: #374151;
+    --focus-ring-color: #60a5fa;
+}
+
+/* Base Styles */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: var(--transition);
+}
+
+/* Accessibility - Focus Styles */
+:focus-visible {
+    outline: 3px solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+}
+
+/* Layout */
+.container {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+    padding: clamp(1rem, 5vw, 3rem);
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 4rem;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}

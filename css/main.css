@@ -1,0 +1,13 @@
+/* Main Stylesheet - Imports all modular CSS files */
+@import url('./base.css');
+@import url('./components.css');
+@import url('./loading.css');
+@import url('./theme.css');
+@import url('./header.css');
+@import url('./about.css');
+@import url('./skills.css');
+@import url('./experience.css');
+@import url('./projects.css');
+@import url('./footer.css');
+@import url('./animations.css');
+@import url('./responsive.css');

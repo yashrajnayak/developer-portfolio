@@ -1,0 +1,115 @@
+name: Template Setup
+
+on:
+  push:
+    branches: [main, master]
+  create:
+
+jobs:
+  setup-portfolio:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check if this is a new repository from template
+        id: check-template
+        run: |
+          # Check if this repository was created from the template
+          TEMPLATE_REPO="${{ github.event.repository.template_repository.full_name }}"
+          
+          # Check if config.json already exists and has been customized (indicates setup already done)
+          if [ -f "config.json" ] && grep -q '"github_username".*"' config.json; then
+            GITHUB_USERNAME_IN_CONFIG=$(grep -o '"github_username": *"[^"]*"' config.json | cut -d'"' -f4)
+            if [[ "$GITHUB_USERNAME_IN_CONFIG" == "${{ github.repository_owner }}" ]]; then
+              echo "is_template=false" >> $GITHUB_OUTPUT
+              echo "ℹ️  Template setup already completed (config.json customized), skipping"
+              exit 0
+            fi
+          fi
+          
+          # Check if this looks like the original template (has docs folder and template files)
+          if [ -d "docs" ] && [ -f ".github/workflows/template-setup.js" ]; then
+            echo "is_template=true" >> $GITHUB_OUTPUT
+            echo "✅ Detected template repository setup needed"
+          elif [[ "$TEMPLATE_REPO" == "yashrajnayak/developer-portfolio" ]]; then
+            echo "is_template=true" >> $GITHUB_OUTPUT
+            echo "✅ Repository created from developer-portfolio template"
+          else
+            echo "is_template=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  Repository not created from template, skipping setup"
+          fi
+
+      - name: Verify repository naming convention
+        if: steps.check-template.outputs.is_template == 'true'
+        id: verify-name
+        run: |
+          REPO_NAME="${{ github.event.repository.name }}"
+          REPO_OWNER="${{ github.repository_owner }}"
+          
+          # Check if repository name follows username.github.io format
+          if [[ "$REPO_NAME" == "$REPO_OWNER.github.io" ]]; then
+            echo "name_correct=true" >> $GITHUB_OUTPUT
+            echo "✅ Repository name follows correct format: $REPO_NAME"
+          else
+            echo "name_correct=false" >> $GITHUB_OUTPUT
+            echo "⚠️  Repository name should be: $REPO_OWNER.github.io (current: $REPO_NAME)"
+            echo "This is recommended for GitHub Pages to work at your root domain."
+          fi
+
+      - name: Setup Node.js
+        if: steps.check-template.outputs.is_template == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Run template setup
+        if: steps.check-template.outputs.is_template == 'true'
+        env:
+          GITHUB_USERNAME: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+          REPO_OWNER: ${{ github.repository_owner }}
+        run: |
+          echo "🚀 Running portfolio template setup..."
+          node .github/workflows/template-setup.js
+
+      - name: Commit changes
+        if: steps.check-template.outputs.is_template == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Template setup"
+          git push
+
+      - name: Create setup summary
+        if: steps.check-template.outputs.is_template == 'true'
+        run: |
+          echo "# 🎉 Portfolio Setup Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Your portfolio has been automatically initialized:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **GitHub Username**: @${{ github.repository_owner }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Repository**: ${{ github.event.repository.name }}" >> $GITHUB_STEP_SUMMARY
+          
+          # Show portfolio URL based on repository name
+          if [[ "${{ steps.verify-name.outputs.name_correct }}" == "true" ]]; then
+            echo "- **Portfolio URL**: https://${{ github.repository_owner }}.github.io" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- **Portfolio URL**: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "⚠️  **Note**: For your portfolio to be available at https://${{ github.repository_owner }}.github.io, rename this repository to \`${{ github.repository_owner }}.github.io\`" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🚀 Next Steps:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "1. **Update \`config.json\`** with your personal information, experience, and projects" >> $GITHUB_STEP_SUMMARY
+          echo "2. **Add "featured" topic** to GitHub repositories you want to showcase" >> $GITHUB_STEP_SUMMARY
+          echo "3. **Enable GitHub Pages** in repository settings → Pages → Source: Deploy from branch → main" >> $GITHUB_STEP_SUMMARY
+          echo "4. **Your portfolio is ready!** The README will auto-update when you edit config.json" >> $GITHUB_STEP_SUMMARY

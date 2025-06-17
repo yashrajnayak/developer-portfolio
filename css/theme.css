@@ -1,0 +1,50 @@
+/* Theme Switcher */
+.theme-switch {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: var(--card-background);
+    border: none;
+    color: var(--text-color);
+    padding: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-switch:hover {
+    transform: rotate(15deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.theme-switch svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-switch .sun-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}
+
+.theme-switch .moon-icon {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0) rotate(-90deg);
+}
+
+[data-theme="dark"] .theme-switch .sun-icon {
+    opacity: 0;
+    transform: scale(0) rotate(90deg);
+}
+
+[data-theme="dark"] .theme-switch .moon-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}

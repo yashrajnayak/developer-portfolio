@@ -1,0 +1,85 @@
+name: Update README from Config
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # Fetch full history to check commit count
+
+      - name: Check if this is repository initialization
+        id: check-init
+        run: |
+          echo "🔍 Checking if this is repository initialization..."
+          
+          # Count total commits in the repository
+          COMMIT_COUNT=$(git rev-list --count HEAD)
+          echo "Total commits: $COMMIT_COUNT"
+          
+          # Check if README.md exists and has been committed before
+          if git log --oneline --follow README.md 2>/dev/null | wc -l | grep -q "^[1-9]"; then
+            echo "README.md has commit history"
+            echo "skip=false" >> $GITHUB_OUTPUT
+          elif [ "$COMMIT_COUNT" -gt 2 ]; then
+            echo "Repository has multiple commits, proceeding with update"
+            echo "skip=false" >> $GITHUB_OUTPUT
+          else
+            echo "This appears to be repository initialization, skipping README update"
+            echo "skip=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Node.js
+        if: steps.check-init.outputs.skip == 'false'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Validate config.json
+        if: steps.check-init.outputs.skip == 'false'
+        run: |
+          echo "🔍 Validating config.json..."
+          if [ ! -f "config.json" ]; then
+            echo "❌ config.json not found"
+            exit 1
+          fi
+          
+          if ! jq empty config.json 2>/dev/null; then
+            echo "❌ config.json is not valid JSON"
+            exit 1
+          fi
+          
+          echo "✅ config.json is valid"
+
+      - name: Generate README
+        if: steps.check-init.outputs.skip == 'false'
+        run: |
+          echo "🚀 Generating README from config.json..."
+          node .github/workflows/update-readme.js
+
+      - name: Check for changes
+        if: steps.check-init.outputs.skip == 'false'
+        id: verify-changed-files
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit changes
+        if: steps.check-init.outputs.skip == 'false' && steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "🤖 Auto-update README.md from config.json"
+          git push

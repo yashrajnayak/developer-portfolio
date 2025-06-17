@@ -1,0 +1,120 @@
+/* Experience Section */
+.experience-item {
+    margin-bottom: 1.5rem;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.experience-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Experience Header (always visible) */
+.experience-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+/* Experience Header Content */
+.experience-header-content {
+    flex: 1;
+}
+
+.experience-header-content h3 {
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+.experience-header-content .date {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Experience Content (collapsible) */
+.experience-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-item.expanded .experience-content {
+    padding: 0 1.5rem 1.5rem;
+    max-height: 500px;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-content ul {
+    list-style: none;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.experience-content li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.experience-content li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+}
+
+/* Accordion Toggle Icon */
+.accordion-toggle {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+}
+
+.experience-item.expanded .accordion-toggle {
+    transform: rotate(180deg);
+}
+
+/* Company Logo */
+.company-logo {
+    width: 140px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0;
+    padding: 1rem;
+}
+
+.company-logo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: none;
+    max-height: 50px;
+}
+
+.company-logo .light-mode-logo {
+    display: block;
+}
+
+[data-theme="dark"] .company-logo .light-mode-logo {
+    display: none;
+}
+
+[data-theme="dark"] .company-logo .dark-mode-logo {
+    display: block;
+}

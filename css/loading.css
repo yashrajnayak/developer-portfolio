@@ -1,0 +1,56 @@
+/* Loading Screen Styles */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color, #f8fafc);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--primary-color, #2563eb);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color, #1e293b);
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Hide empty elements until content loads */
+.content-hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.content-visible {
+    opacity: 1;
+}
+
+/* Loading State */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+}

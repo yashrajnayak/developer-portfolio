@@ -1,0 +1,178 @@
+{
+  "features": {
+    "about": true,
+    "projects": true,
+    "experience": true,
+    "skills": true,
+    "github_projects": true
+  },
+  "site": {
+    "title": "Yashraj Nayak",
+    "description": "Developer Portfolio",
+    "seo": {
+      "title": "Yashraj Nayak - Developer Portfolio",
+      "description": "Developer Portfolio of Yashraj Nayak - Program Manager at GitHub Developer Relations",
+      "keywords": "developer, portfolio, github, developer relations",
+      "author": "Yashraj Nayak",
+      "og_image": "https://avatars.githubusercontent.com/yashrajnayak",
+      "twitter_card": "summary_large_image",
+      "base_url": "https://yashrajnayak.dev"
+    }
+  },
+  "header": {
+    "greeting": "Yashraj Nayak",
+    "tagline": "Developer and People Person."
+  },
+  "social_links": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/yashrajnayak",
+      "icon": "github",
+      "required": true
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/yashrajnayak/",
+      "icon": "linkedin"
+    }
+  ],
+  "github_username": "yashrajnayak",
+  "about": {
+    "paragraphs": [
+      "Currently working as Program Manager at GitHub Developer Relations, where I help spark creativity and excitement around GitHub while finding new ways to connect with developers worldwide.",
+      "My community journey began as a Microsoft Student Partner during university, where I proudly represented India at a worldwide summit at Microsoft HQ. Over the past 8 years, I've built and scaled developer communities that have reached hundreds of thousands of tech enthusiasts."
+    ]
+  },
+  "projects": {
+    "title": "Latest Projects",
+    "items": [
+      {
+        "name": "GitHub Constellation 2024",
+        "date": "June 12, 2024",
+        "description": [
+          "GitHub's developer conference featuring a keynote by GitHub CEO Thomas Dohmke, 20+ speakers and 900+ in-person attendees.",
+          "Collaborated with external agencies and multiple teams within organization.",
+          "Managed end-to-end execution, including website management, venue logistics, emceeing, speakers and attendee engagement."
+        ],
+        "picture": "assets/projects/GitHub_Constellation_2024.jpeg"
+      }
+    ]
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "jobs": [
+      {
+        "company": "GitHub",
+        "role": "Program Manager, Developer Relations",
+        "date": "Mar 2024 - Present",
+        "responsibilities": [
+          "Successfully hosted GitHub Constellation 2024, 900+ developer conference in Bengaluru, India",
+          "Growing key programs like the Global Meetups Program and 1st party events such as GitHub Universe Recap and GitHub Connect India",
+          "Scaling GitTogethers in India, developer meetups led by local community experts and powered by GitHub. Hosting 4 premier developer meetups every month in Bengaluru, Delhi NCR, Hyderabad, and Mumbai. Featured over 90 speakers and engaged more than 2,000 of India's most active developers, bringing them closer to the GitHub ecosystem"
+        ],
+        "logo": "assets/logos/GitHub_Logo.png",
+        "logo_dark": "assets/logos/GitHub_Logo_White.png"
+      },
+      {
+        "company": "ANSR",
+        "role": "Senior Community Manager",
+        "date": "Mar 2023 - Feb 2024",
+        "responsibilities": [
+          "Built community programs from scratch, reaching 6,000+ active developers in 8 months",
+          "Hosted 20 successful tech events with 3,000+ attendees (React-n-Roll Meetups, Women in Tech Mixers)",
+          "Advocated for community needs within the GCC ecosystem"
+        ],
+        "logo": "assets/logos/ANSR_Logo.png",
+        "logo_dark": "assets/logos/ANSR_Logo_White.png"
+      },
+      {
+        "company": "OutSystems",
+        "role": "APAC Community Growth Manager",
+        "date": "Mar 2021 - Feb 2023",
+        "responsibilities": [
+          "Expanded global community programs throughout Asia-Pacific",
+          "Led initiatives like #14DaysOfOutSystems Challenge and OutSystems Student Accelerator",
+          "Supported OutSystems User Group organizers across APAC to build strong local communities"
+        ],
+        "logo": "assets/logos/OutSystems_Logo.png",
+        "logo_dark": "assets/logos/OutSystems_Logo_White.png"
+      },
+      {
+        "company": "Progate",
+        "role": "India Community Manager",
+        "date": "Jun 2018 - Feb 2021",
+        "responsibilities": [
+          "Helped this Japanese coding learning platform to grow userbase to 200,000+ learners in India",
+          "Established Community Partnership with Hacktoberfest 2020 and other non-profits",
+          "Organized 30+ Learning Jams across major Indian cities",
+          "Reached 6,000+ high school students through Hour of Code™ 2018 Campaign"
+        ],
+        "logo": "assets/logos/Progate_Logo.png",
+        "logo_dark": "assets/logos/Progate_Logo_White.png"
+      },
+      {
+        "company": "Skillenza",
+        "role": "Community Manager",
+        "date": "Aug 2017 - Feb 2018",
+        "responsibilities": [
+          "Worked alongside teams from DigitalOcean, AWS, Digital Domain, Société Générale, etc to plan and execute developer events across the country (both online and offline)",
+          "Helped in the execution of Hack2Innovate 2017, series of 7 deep-tech hackathons while working with teams from T-Hub, Microsoft, NVIDIA and PwC",
+          "Handled Skillenza's student developer engagement and supported 25+ hackathons in different campuses across the country"
+        ],
+        "logo": "assets/logos/Skillenza_Logo.png",
+        "logo_dark": "assets/logos/Skillenza_Logo_White.png"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "categories": [
+      {
+        "name": "Technical",
+        "items": [
+          "JavaScript and C#",
+          "React",
+          "CI/CD with GitHub Actions",
+          "Microsoft Azure",
+          "Technical Presentations"
+        ]
+      },
+      {
+        "name": "Developer Relations",
+        "items": [
+          "Program Management",
+          "Developer Engagement",
+          "Developer Advocacy",
+          "User Research and Feedback",
+          "Community Building"
+        ]
+      },
+      {
+        "name": "Certifications",
+        "items": [
+          {
+            "name": "GitHub Foundations",
+            "url": "https://www.credly.com/badges/7754da79-07d9-4abe-9f9e-e0c9a84a34b4/"
+          },
+          {
+            "name": "GitHub Copilot",
+            "url": "https://www.credly.com/badges/370d77b0-13a0-45a7-92ae-3326f64786be/"
+          },
+          {
+            "name": "Meta Certified Community Manager",
+            "url": "https://www.credly.com/badges/9f1fd9c1-3469-47d0-ad43-2647f638d622/"
+          }
+        ]
+      }
+    ]
+  },
+  "github_projects": {
+    "title": "Projects on GitHub"
+  },
+  "footer": {
+    "show_social_links": true,
+    "show_built_with": true,
+    "built_with_text": "Built with ❤️ using vanilla JavaScript",
+    "tagline": "Let's connect and build something amazing together!"
+  }
+}
