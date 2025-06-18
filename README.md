@@ -10,63 +10,53 @@ A modern, fully configurable developer portfolio that adapts to your content. Bu
 
 ![image](https://github.com/user-attachments/assets/57db89c3-cb51-4aac-b9df-800c7c4a811d)
 
-## ✨ Key Features
-
-### Technical
-
-- 🎛️ **Feature Flags**: Enable/disable sections (about, projects, experience, skills, GitHub projects)
-- 🚀 **GitHub Integration**: Automatically shows repositories with "featured" topic
-- ⚙️ **Zero Code Changes**: Everything configured through JSON
-- 📊 **Flexible Content**: Add 1 project or 100 projects - website adapts automatically
-- 🔗 **Project Links**: Add links to live demos, repositories, or project pages for each project
-- ⚡ **Performance Optimized**: Fast loading with lazy images and efficient DOM updates
-- 🏗️ **Modular Architecture**: Clean, maintainable codebase with separated concerns
-- 🤖 **Auto-Setup**: Automatically initializes your portfolio when you use the template
-- 🔄 **Manual README Updates**: Generate and update personalized README.md from your config via workflow
-
-### User Experience
-
-- 📱 **Mobile-First Design**: Fully responsive
-- 🌓 **Dark/Light Mode**: Smooth transitions with persistent preferences
-- 🔗 **Dynamic Social Links**: Add unlimited social media and professional links with built-in icons
-- 🎨 **Smart Logo Handling**: Automatic light/dark mode logo switching
-
 ## 🚀 Quick Start
 
-### 🎯 Recommended Setup
-1. **Click "Use this template"** → "Create a new repository"
-2. **Name your repository** `yourusername.github.io` (replace `yourusername` with your actual GitHub username)
-3. **Wait for automatic setup** - The template will automatically:
+1. Click "Use this template → "Create a new repository"
+2. Name your repository `yourusername.github.io` (replace `yourusername` with your actual GitHub username)
+3. Wait for automatic setup - The template will automatically:
    - Create personalized `config.json` with your GitHub username
    - Generate initial README.md with your GitHub stats
    - Update LICENSE file with your name
    - Remove template-specific files
    - Prepare everything for customization
-4. **Enable GitHub Pages**: Go to Settings → Pages → Deploy from branch → main
-5. **Customize your portfolio**: Edit `config.json` with your details
-6. **Your portfolio is live!** 🎉
+4. Customize your portfolio: Edit `config.json` with your details
+5. After editing `config.json` go to Actions → "Update README from Config" → click on "Run workflow" and again "Run workflow"
+6. Check if GitHub Pages is enabled: Go to Settings → Pages → Deploy from branch → main
 
-### ⚡ What Happens Automatically
+Wait for GitHub Pages deployment to complete and your portfolio would be live! 🎉
+
+## ✨ Technical Features
+
+- 🤖 Automatically initializes your portfolio when you use the template
+- ⚙️ Zero code changes required - everything configured through JSON
+- 🎛️ Feature Flags to enable/disable sections (about, projects, experience, skills, GitHub projects)
+- 🚀 GitHub integration which automatically displays repositories with "featured" topic
+- ⚡ Performance optimized - fast loading with lazy images and efficient DOM updates
+- 🏗️ Modular Architecture with clean, maintainable codebase
+
+## 🎨 User Experience
+
+- 📱 Fully responsive mobile-first design
+- 🌓 Dark/light mode - smooth transitions with persistent preferences
+- 📊 Add 1 project or 100 projects - website adapts automatically
+- 🔗 Project links - Add links to live demos, repositories, or project pages for each project
+
+### ⚡ Automatic Setup
 
 When you create a repository from this template:
 
-- ✅ **Instant Setup**: GitHub Actions automatically detects the new repository
-- ✅ **Repository Validation**: Checks if you named it correctly (`username.github.io`)
-- ✅ **Personalized Config**: Creates `config.json` with your GitHub username pre-filled
-- ✅ **Initial README**: Generates a beautiful README.md with your GitHub stats
-- ✅ **LICENSE Update**: Updates the LICENSE file with your name as copyright holder
-- ✅ **Cleanup**: Removes all template-specific files you don't need
-- ✅ **Ready to Deploy**: Everything prepared for immediate GitHub Pages deployment
-
-### 🔄 Manual README Updates
-
-Your README.md can be updated triggering the ["Update README from Config" workflow](https://github.com/yashrajnayak/developer-portfolio/actions/workflows/update-readme.yml) after editing `config.json`
+- GitHub Actions automatically detects the new repository
+- Checks if you named it correctly (`username.github.io`)
+- Creates personalized `config.json` with your GitHub username pre-filled
+- Generates a beautiful README.md with your GitHub stats
+- Updates the LICENSE file with your name
+- Removes all template-specific files you don't need
+- Everything prepared for immediate GitHub Pages deployment ✅ 
 
 ![image](assets/portfolio-generator-explainer.png)
 
 ## 📁 Project Structure
-
-The portfolio uses a modular architecture for better maintainability:
 
 ```
 ├── index.html              # Main HTML file
@@ -106,11 +96,11 @@ The portfolio uses a modular architecture for better maintainability:
 
 All portfolio content is managed through `config.json`. After the automated setup:
 
-1. **Update personal information** in the `header` and `about` sections
-2. **Add your experience** in the `experience.jobs` array
-3. **Showcase your projects** in the `projects.items` array
-4. **List your skills** in the `skills.categories` array
-5. **Configure social links** in the `social_links` array
+1. Update personal information in the `header` and `about` sections
+2. Add your experience in the `experience.jobs` array
+3. Showcase your projects in the `projects.items` array
+4. List your skills in the `skills.categories` array
+5. Configure social links in the `social_links` array
 
 ### Example config.json structure:
 ```json
@@ -215,4 +205,4 @@ Want to improve this template?
 
 This project is open source and available under the [MIT License](LICENSE).
 
-- Built with ❤️ for the developer community
+Built with ❤️ for the developer community

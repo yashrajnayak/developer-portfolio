@@ -19,7 +19,7 @@ function generateReadme(config) {
 
 </div>
 
-The live portfolio includes detailed professional experience, technical skills and certifications, featured projects and achievements, and contact information.
+The live portfolio includes detailed professional experience, technical skills and certifications, featured projects and achievements.
 
 ## ✨ Features
 
