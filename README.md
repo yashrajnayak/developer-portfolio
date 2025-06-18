@@ -8,7 +8,7 @@ A modern, fully configurable developer portfolio that adapts to your content. Bu
 
 </div>
 
-![image](https://github.com/user-attachments/assets/57db89c3-cb51-4aac-b9df-800c7c4a811d)
+[![image](https://github.com/user-attachments/assets/57db89c3-cb51-4aac-b9df-800c7c4a811d)](https://yashrajnayak.github.io/)
 
 ## 🚀 Quick Start
 
@@ -20,7 +20,7 @@ A modern, fully configurable developer portfolio that adapts to your content. Bu
    - Update LICENSE file with your name
    - Remove template-specific files
    - Prepare everything for customization
-4. Customize your portfolio: Edit `config.json` with your details
+4. Customize your portfolio by editing `config.json` with your details
 5. After editing `config.json` go to Actions → "Update README from Config" → click on "Run workflow" and again "Run workflow"
 6. Check if GitHub Pages is enabled: Go to Settings → Pages → Deploy from branch → main
 
