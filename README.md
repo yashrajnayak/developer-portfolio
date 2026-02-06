@@ -14,15 +14,18 @@ A modern, fully configurable developer portfolio that adapts to your content. Bu
 
 1. Click "Use this template → "Create a new repository"
 2. Name your repository `yourusername.github.io` (replace `yourusername` with your actual GitHub username)
-3. Wait for automatic setup - The template will automatically:
+3. **Enable & Run Setup**: Go to `https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/template-setup.yml`
+   - Click "I understand my workflows, go ahead and enable them"
+   - Click "Run workflow" → "Run workflow" (green button)
+4. Wait for the setup to complete - The template will automatically:
    - Create personalized `config.json` with your GitHub username
    - Generate initial README.md with your GitHub stats
    - Update LICENSE file with your name
    - Remove template-specific files
    - Prepare everything for customization
-4. Customize your portfolio by editing `config.json` with your details
-5. After editing `config.json` go to Actions → "Update README from Config" → click on "Run workflow" and again "Run workflow"
-6. Check if GitHub Pages is enabled: Go to Settings → Pages → Deploy from branch → main
+5. Customize your portfolio by editing `config.json` with your details
+6. After editing `config.json` go to Actions → "Update README from Config" → click on "Run workflow" and again "Run workflow"
+7. Check if GitHub Pages is enabled: Go to Settings → Pages → Deploy from branch → main
 
 Wait for GitHub Pages deployment to complete and your portfolio would be live! 🎉
 
