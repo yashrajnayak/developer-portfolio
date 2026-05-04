@@ -176,6 +176,7 @@ function cleanupTemplateFiles() {
   ];
 
   const dirsToRemove = [
+    'assets/readme',
     'docs'
   ];
 
