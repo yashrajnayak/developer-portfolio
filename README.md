@@ -12,7 +12,7 @@ A modern, fully configurable developer portfolio that adapts to your content. Bu
 
 ## 🚀 Quick Start
 
-![Quick start flow for using the developer portfolio template](assets/readme/quick-start-flow.png)
+![Launch your portfolio flow showing template use, config editing, and GitHub Pages publishing](assets/readme/quick-start-flow.png)
 
 1. Click "Use this template → "Create a new repository"
 2. Name your repository `yourusername.github.io` (replace `yourusername` with your actual GitHub username)
@@ -66,7 +66,7 @@ When you create a repository from this template:
 
 ## 🏗️ Template Architecture
 
-![Architecture diagram showing how config, GitHub Actions, build scripts, browser runtime, GitHub API, README generation, SEO assets, and GitHub Pages fit together](assets/readme/architecture-diagram.png)
+![Developer portfolio template architecture showing config, GitHub Actions, build scripts, static site assets, browser runtime, GitHub API, and rendered portfolio sections](assets/readme/architecture-diagram.png)
 
 The template keeps authoring simple with `config.json`, then uses GitHub Actions and local scripts to generate the production-ready pieces: bundled CSS/JS, README content, SEO files, and a static GitHub Pages site.
 
