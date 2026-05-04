@@ -204,6 +204,10 @@ Want to improve this template?
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+## 🙌 Credits
+
+GitHub stats cards are powered by [GitHub Readme Stats](https://github.com/anuraghazra/github-readme-stats) by [Anurag Hazra](https://github.com/anuraghazra).
+
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).

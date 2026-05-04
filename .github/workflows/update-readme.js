@@ -40,6 +40,8 @@ The live portfolio includes detailed professional experience, technical skills a
 
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=${config.github_username}&theme=dark&hide_border=true&include_all_commits=true&count_private=true&layout=compact)
 
+<p><sub>Stats cards powered by <a href="https://github.com/anuraghazra/github-readme-stats">GitHub Readme Stats</a> by <a href="https://github.com/anuraghazra">Anurag Hazra</a>.</sub></p>
+
 </div>
 
 ## 🤝 Connect
