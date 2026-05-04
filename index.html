@@ -6,6 +6,10 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -13,6 +17,7 @@
     <meta property="og:title" content="">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
+    <meta property="og:image:alt" content="">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="">
@@ -20,12 +25,21 @@
     <meta property="twitter:title" content="">
     <meta property="twitter:description" content="">
     <meta property="twitter:image" content="">
+    <meta property="twitter:image:alt" content="">
 
     <title></title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='12' cy='12' r='10'/><line x1='2' y1='12' x2='22' y2='12'/><path d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z'/></svg>">
-    <link rel="preload" href="css/main.css" as="style">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preload" href="css/bundle.css" as="style">
     <link rel="preconnect" href="https://avatars.githubusercontent.com">
+    <link rel="preconnect" href="https://raw.githubusercontent.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://api.github.com">
+    <link rel="dns-prefetch" href="https://raw.githubusercontent.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="stylesheet" href="css/bundle.css">
     
     <script type="application/ld+json">
     {
@@ -41,8 +55,45 @@
       }
     }
     </script>
+    <noscript>
+        <style>
+            #loading-screen,
+            .theme-switch,
+            .container,
+            .footer,
+            #scroll-to-top {
+                display: none !important;
+            }
+
+            .noscript-profile {
+                width: min(720px, calc(100% - 2rem));
+                margin: 4rem auto;
+                color: #1e293b;
+                font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                line-height: 1.7;
+            }
+
+            .noscript-profile h1,
+            .noscript-profile h2 {
+                color: #1e293b;
+                line-height: 1.2;
+            }
+
+            .noscript-profile a {
+                color: #2563eb;
+            }
+        </style>
+    </noscript>
 </head>
 <body>
+    <noscript>
+        <main class="noscript-profile">
+            <h1>Developer Portfolio</h1>
+            <p>This portfolio loads its content from <code>config.json</code>. Enable JavaScript to view the full interactive site.</p>
+            <p>You can still inspect the repository files to see the portfolio content, configuration, and source code.</p>
+        </main>
+    </noscript>
+
     <!-- Loading Screen -->
     <div id="loading-screen" role="progressbar" aria-label="Loading portfolio">
         <div class="loading-spinner"></div>
@@ -89,7 +140,7 @@
         <section class="projects-on-github" aria-label="GitHub projects">
             <h2></h2>
             <div id="projects" class="projects-grid">
-                <div class="loading" role="status">Loading projects...</div>
+                <div class="loading" role="status">Loading repositories...</div>
             </div>
         </section>
     </div>
@@ -166,7 +217,15 @@
             <polyline points="8,6 2,12 8,18"></polyline>
         </svg>
     </template>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top" title="Go to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
     
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/bundle.js"></script>
 </body>
 </html>

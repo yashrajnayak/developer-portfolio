@@ -19,17 +19,20 @@ function generateReadme(config) {
 
 </div>
 
-The live portfolio includes detailed professional experience, technical skills and certifications, featured projects and achievements.
+The live portfolio includes detailed professional experience, technical skills and certifications, configurable GitHub projects, achievements, and contact information.
 
 ## ✨ Features
 
 - 🎨 **Modern Design** - Clean, responsive interface with dark/light theme support
-- 🚀 **Performance Optimized** - Fast loading with vanilla JavaScript
+- 🚀 **Performance Optimized** - Fast loading with bundled vanilla JavaScript and CSS
+- 🔍 **SEO & Social Ready** - Generated metadata, sitemap, robots.txt, and web manifest
+- ♿ **Accessible** - Native \`<details>\`/\`<summary>\` sections for keyboard and screen reader support
 - 📱 **Mobile First** - Fully responsive across all devices
 - 🔄 **Auto-Updated** - Content dynamically generated from \`config.json\`
-- 🎭 **Interactive** - Smooth animations and engaging user experience
 - 🌓 **Dark/Light Mode** - Smooth transitions with persistent preferences
 - 🔗 **Dynamic Social Links** - Configurable social media and professional links
+- 🔝 **Smooth Navigation** - Integrated scroll-to-top control
+- 📑 **Professional Print** - Custom print stylesheet for clean PDF exports
 - ⚙️ **Zero Code Changes** - Everything configured through JSON
 
 ## 📈 GitHub Stats

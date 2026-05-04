@@ -18,7 +18,6 @@ export class ConfigManager {
                 throw new Error('Failed to parse config file - empty or invalid JSON');
             }
             
-            console.log('Config loaded successfully');
             return this.config;
         } catch (error) {
             console.error('Error loading config:', error);

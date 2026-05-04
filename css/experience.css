@@ -1,26 +1,40 @@
 /* Experience Section */
+.experience h2 {
+    font-family: var(--font-display);
+}
+
 .experience-item {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     background-color: var(--card-background);
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: var(--border-radius-xl);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
     transition: var(--transition);
     overflow: hidden;
 }
 
 .experience-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    border-color: rgba(37, 99, 235, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* Experience Header (always visible) */
+.experience-details {
+    width: 100%;
+}
+
 .experience-header {
     display: flex;
-    gap: 2rem;
+    justify-content: space-between;
     align-items: center;
     padding: 1.5rem;
     cursor: pointer;
-    transition: var(--transition);
+    list-style: none;
+}
+
+/* Hide default arrow in Chrome/Safari */
+.experience-header::-webkit-details-marker {
+    display: none;
 }
 
 /* Experience Header Content */
@@ -28,29 +42,30 @@
     flex: 1;
 }
 
-.experience-header-content h3 {
-    color: var(--heading-color);
-    margin-bottom: 0.5rem;
+.experience-header h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* First experience item (current job) title in primary color */
+.experience section>.experience-item:first-of-type .experience-header h3,
+.experience-item:first-of-type .experience-header h3 {
+    color: var(--primary-color);
 }
 
 .experience-header-content .date {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     margin-bottom: 0;
 }
 
 /* Experience Content (collapsible) */
 .experience-content {
-    padding: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.experience-item.expanded .experience-content {
     padding: 0 1.5rem 1.5rem;
-    max-height: 500px;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition);
 }
 
 .experience-content ul {
@@ -60,16 +75,21 @@
 }
 
 .experience-content li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     position: relative;
-    padding-left: 1rem;
+    padding-left: 1.5rem;
+    line-height: 1.6;
 }
 
 .experience-content li::before {
-    content: "•";
+    content: "";
     position: absolute;
     left: 0;
-    color: var(--text-muted);
+    top: 0.5rem;
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
 }
 
 /* Accordion Toggle Icon */
@@ -84,19 +104,19 @@
     flex-shrink: 0;
 }
 
-.experience-item.expanded .accordion-toggle {
+.experience-details[open] .accordion-toggle {
     transform: rotate(180deg);
 }
 
 /* Company Logo */
 .company-logo {
-    width: 140px;
+    width: 100px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto 0;
-    padding: 1rem;
+    padding: 0 1rem;
 }
 
 .company-logo img {
@@ -104,7 +124,7 @@
     height: auto;
     object-fit: contain;
     display: none;
-    max-height: 50px;
+    max-height: 32px;
 }
 
 .company-logo .light-mode-logo {

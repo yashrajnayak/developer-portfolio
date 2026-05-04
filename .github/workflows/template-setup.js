@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 /**
  * Template Setup Script
@@ -26,7 +27,8 @@ function createDefaultConfig(fullName, githubUsername, portfolioUrl) {
         "description": `Developer Portfolio of ${fullName}`,
         "keywords": "developer, portfolio, github",
         "author": fullName,
-        "og_image": `https://avatars.githubusercontent.com/${githubUsername}`,
+        "og_image": `https://avatars.githubusercontent.com/${githubUsername}?s=512`,
+        "og_image_alt": `Profile photo of ${fullName}`,
         "twitter_card": "summary_large_image",
         "base_url": portfolioUrl
       }
@@ -121,7 +123,11 @@ function createDefaultConfig(fullName, githubUsername, portfolioUrl) {
       ]
     },
     "github_projects": {
-      "title": "Projects on GitHub"
+      "title": "Projects on GitHub",
+      "mode": "featured",
+      "topic": "featured",
+      "max_repos": 6,
+      "excluded_repos": []
     },
     "footer": {
       "show_social_links": true,
@@ -132,6 +138,19 @@ function createDefaultConfig(fullName, githubUsername, portfolioUrl) {
   };
 
   return config;
+}
+
+function buildGeneratedAssets() {
+  const buildScript = path.join(process.cwd(), 'scripts', 'build-assets.mjs');
+
+  if (!fs.existsSync(buildScript)) {
+    console.warn('⚠️  Build script not found, skipping generated assets');
+    return;
+  }
+
+  console.log('🏗️  Building bundled and SEO assets...');
+  execFileSync('node', [buildScript], { stdio: 'inherit' });
+  console.log('✅ Generated assets updated successfully!');
 }
 
 function cleanupTemplateFiles() {
@@ -226,12 +245,15 @@ Welcome to my developer portfolio! This website showcases my projects, skills, a
 ## ✨ Features
 
 - 🎨 **Modern Design** - Clean, responsive interface with dark/light theme support
-- 🚀 **Performance Optimized** - Fast loading with vanilla JavaScript
+- 🚀 **Performance Optimized** - Fast loading with bundled vanilla JavaScript and CSS
+- 🔍 **SEO & Social Ready** - Generated metadata, sitemap, robots.txt, and web manifest
+- ♿ **Accessible** - Native \`<details>\`/\`<summary>\` sections for keyboard and screen reader support
 - 📱 **Mobile First** - Fully responsive across all devices
 - 🔄 **Auto-Updated** - Content dynamically generated from \`config.json\`
-- 🎭 **Interactive** - Smooth animations and engaging user experience
 - 🌓 **Dark/Light Mode** - Smooth transitions with persistent preferences
 - 🔗 **Dynamic Social Links** - Configurable social media and professional links
+- 🔝 **Smooth Navigation** - Integrated scroll-to-top control
+- 📑 **Professional Print** - Custom print stylesheet for clean PDF exports
 - ⚙️ **Zero Code Changes** - Everything configured through JSON
 
 ## 📈 GitHub Stats
@@ -361,25 +383,28 @@ async function main() {
     fs.writeFileSync(path.join(process.cwd(), 'config.json'), JSON.stringify(config, null, 2));
     console.log('✅ config.json created successfully!');
 
-    // 2. Create initial README.md
+    // 2. Build generated assets from the personalized config
+    buildGeneratedAssets();
+
+    // 3. Create initial README.md
     console.log('📄 Creating initial README.md...');
     const readme = createInitialReadme(fullName, githubUsername, portfolioUrl, repoName);
     fs.writeFileSync(path.join(process.cwd(), 'README.md'), readme);
     console.log('✅ README.md created successfully!');
 
-    // 3. Update LICENSE file
+    // 4. Update LICENSE file
     updateLicense(fullName);
 
-    // 4. Clean up template-specific files
+    // 5. Clean up template-specific files
     cleanupTemplateFiles();
 
     console.log('🎉 Portfolio setup complete!');
     console.log('');
     console.log('Next steps:');
     console.log('1. Update config.json with your personal details');
-    console.log('2. Add "featured" topic to repositories you want to showcase');
+    console.log('2. Add the "featured" topic to repositories you want to showcase, or set github_projects.mode to "stars"');
     console.log('3. Enable GitHub Pages in repository settings');
-    console.log('4. Your portfolio will be live and auto-updating!');
+    console.log('4. Run the README update workflow after editing config.json');
 
   } catch (error) {
     console.error('❌ Error setting up portfolio:', error.message);

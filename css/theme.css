@@ -1,25 +1,25 @@
 /* Theme Switcher */
 .theme-switch {
     position: fixed;
-    top: 1rem;
-    left: 1rem;
+    top: 1.5rem;
+    right: 1.5rem;
     background: var(--card-background);
-    border: none;
+    border: 1px solid var(--border-color);
     color: var(--text-color);
     padding: 0.75rem;
-    border-radius: 50%;
+    border-radius: var(--border-radius-full);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: var(--transition);
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .theme-switch:hover {
-    transform: rotate(15deg);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .theme-switch svg {

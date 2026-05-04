@@ -1,0 +1,65 @@
+/* Print Stylesheet */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .theme-switch,
+    #loading-screen,
+    .scroll-to-top,
+    .loading,
+    .see-all-repos,
+    .project-accordion-toggle,
+    .accordion-toggle {
+        display: none !important;
+    }
+
+    .container {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    section {
+        margin-bottom: 2rem !important;
+        page-break-inside: avoid;
+    }
+
+    .experience-item,
+    .project-item {
+        border-color: #eee !important;
+        page-break-inside: avoid;
+    }
+
+    /* Expand all accordions for print */
+    details {
+        display: block !important;
+    }
+
+    details[open] summary~* {
+        display: block !important;
+    }
+
+    summary {
+        font-weight: bold;
+    }
+
+    .experience-content,
+    .project-content {
+        display: block !important;
+        max-height: none !important;
+        padding: 1rem !important;
+    }
+
+    a {
+        text-decoration: underline !important;
+        color: black !important;
+    }
+
+    a::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8rem;
+    }
+}

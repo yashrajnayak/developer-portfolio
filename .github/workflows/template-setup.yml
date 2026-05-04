@@ -67,7 +67,7 @@ jobs:
         if: steps.check-template.outputs.is_template == 'true'
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Run template setup
         if: steps.check-template.outputs.is_template == 'true'
@@ -111,6 +111,6 @@ jobs:
           echo "## 🚀 Next Steps:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "1. **Update \`config.json\`** with your personal information, experience, and projects" >> $GITHUB_STEP_SUMMARY
-          echo "2. **Add "featured" topic** to GitHub repositories you want to showcase" >> $GITHUB_STEP_SUMMARY
+          echo "2. **Add the \`featured\` topic** to GitHub repositories you want to showcase, or set \`github_projects.mode\` to \`stars\` in config.json" >> $GITHUB_STEP_SUMMARY
           echo "3. **Enable GitHub Pages** in repository settings → Pages → Source: Deploy from branch → main" >> $GITHUB_STEP_SUMMARY
-          echo "4. **Your portfolio is ready!** The README will auto-update when you edit config.json" >> $GITHUB_STEP_SUMMARY
+          echo "4. **Your portfolio is ready!** Run the README update workflow after editing config.json" >> $GITHUB_STEP_SUMMARY

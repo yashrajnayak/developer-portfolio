@@ -34,9 +34,10 @@ Wait for GitHub Pages deployment to complete and your portfolio would be live! �
 - 🤖 Automatically initializes your portfolio when you use the template
 - ⚙️ Zero code changes required - everything configured through JSON
 - 🎛️ Feature Flags to enable/disable sections (about, projects, experience, skills, GitHub projects)
-- 🚀 GitHub integration which automatically displays repositories with "featured" topic
-- ⚡ Performance optimized - fast loading with lazy images and efficient DOM updates
-- 🏗️ Modular Architecture with clean, maintainable codebase
+- 🚀 GitHub integration with featured-topic, most-starred, or custom-feed project modes
+- ⚡ Performance optimized - bundled CSS/JS, lazy images, and efficient DOM updates
+- 🔎 SEO ready - generated sitemap, robots.txt, web manifest, Open Graph, Twitter Card, and JSON-LD metadata
+- 🏗️ Modular source architecture with committed production bundles
 
 ## 🎨 User Experience
 
@@ -44,6 +45,7 @@ Wait for GitHub Pages deployment to complete and your portfolio would be live! �
 - 🌓 Dark/light mode - smooth transitions with persistent preferences
 - 📊 Add 1 project or 100 projects - website adapts automatically
 - 🔗 Project links - Add links to live demos, repositories, or project pages for each project
+- 📑 Print-friendly layout for resume/PDF exports
 
 ### ⚡ Automatic Setup
 
@@ -53,6 +55,7 @@ When you create a repository from this template:
 - Checks if you named it correctly (`username.github.io`)
 - Creates personalized `config.json` with your GitHub username pre-filled
 - Generates a beautiful README.md with your GitHub stats
+- Generates bundled assets and SEO files from your config
 - Updates the LICENSE file with your name
 - Removes all template-specific files you don't need
 - Everything prepared for immediate GitHub Pages deployment ✅ 
@@ -68,12 +71,16 @@ When you create a repository from this template:
 │   ├── template-setup.yml  # Initial portfolio setup (run once)
 │   ├── template-setup.js   # Setup script for template initialization
 │   ├── update-readme.yml   # README updates from config
-│   └── update-readme.js    # README updates script
+│   ├── update-readme.js    # README updates script
+│   └── validate-site.yml   # CI validation for config, bundles, and local paths
 ├── css/                    # Modular CSS files
+│   ├── bundle.css         # Generated production stylesheet
 │   ├── main.css           # Main stylesheet that imports all modules
 │   ├── base.css           # CSS reset, variables, base styles
 │   ├── components.css     # Shared component styles
 │   ├── theme.css          # Theme switcher and dark mode
+│   ├── scroll-to-top.css  # Scroll-to-top control
+│   ├── print.css          # Print/PDF styles
 │   ├── header.css         # Header and social links
 │   ├── about.css          # About section styles
 │   ├── skills.css         # Skills section styles
@@ -82,6 +89,7 @@ When you create a repository from this template:
 │   ├── animations.css     # Keyframe animations
 │   └── responsive.css     # Mobile and tablet responsive styles
 ├── js/                     # Modular JavaScript files
+│   ├── bundle.js          # Generated production script
 │   ├── main.js            # Main application entry point
 │   ├── config-manager.js  # Configuration loading
 │   ├── seo-manager.js     # SEO meta tags management
@@ -90,6 +98,13 @@ When you create a repository from this template:
 │   ├── section-manager.js # Content sections rendering
 │   ├── header-manager.js  # Header and social links
 │   └── github-projects-manager.js # GitHub API integration
+├── scripts/                # Local build and validation scripts
+│   ├── build-assets.mjs    # Builds bundles, sitemap, robots.txt, and manifest
+│   ├── check-local-paths.mjs # Blocks local machine paths before publishing
+│   └── validate-config.mjs # Validates config and referenced assets
+├── robots.txt              # Generated search crawler hints
+├── sitemap.xml             # Generated sitemap
+├── site.webmanifest        # Generated web app metadata
 └── assets/
     ├── logos/              # Company logos (light and dark variants)
     └── projects/           # Project screenshots
@@ -139,10 +154,24 @@ All portfolio content is managed through `config.json`. After the automated setu
 2. Use format: `Company_Logo.png` and `Company_Logo_White.png` (for dark mode)
 3. Reference in config.json: `"logo": "assets/logos/Company_Logo.png"`
 
-### Featured GitHub Projects
-1. Add "featured" topic to repositories you want to showcase
-2. They'll automatically appear in your "Projects on GitHub" section
-3. No configuration needed - completely automated!
+### GitHub Projects
+The template can show repositories in three modes:
+
+- `featured`: show repositories with a configurable topic, such as `featured`
+- `stars`: show your most-starred public repositories
+- `feed`: read repositories from a custom JSON feed, then fall back to GitHub APIs
+
+```json
+{
+  "github_projects": {
+    "title": "Projects on GitHub",
+    "mode": "featured",
+    "topic": "featured",
+    "max_repos": 6,
+    "excluded_repos": []
+  }
+}
+```
 
 ### Theme Customization
 - Modify CSS custom properties in `css/base.css`
@@ -165,7 +194,7 @@ All portfolio content is managed through `config.json`. After the automated setu
 
 ## 🔄 Automated Workflows
 
-This template includes two powerful GitHub Actions:
+This template includes three GitHub Actions:
 
 ### 1. Template Setup (`template-setup.yml`)
 - **Triggers**: Automatically when repository is created from template
@@ -174,6 +203,7 @@ This template includes two powerful GitHub Actions:
   - Validates repository name format (`username.github.io` recommended)
   - Creates personalized config.json with your GitHub username
   - Generates initial README.md with GitHub stats
+  - Builds bundled assets, sitemap, robots.txt, and web manifest
   - Updates LICENSE file with your name and current year
   - Removes template-specific files (docs/, setup files, etc.)
   - Commits everything ready for deployment
@@ -184,15 +214,36 @@ This template includes two powerful GitHub Actions:
 - **Actions**:
   - Validates config.json format
   - Generates beautiful README with your GitHub stats and info
-  - Commits updated README automatically
+  - Rebuilds generated SEO and bundled assets
+  - Commits updated files automatically
+
+### 3. Site Validation (`validate-site.yml`)
+- **Triggers**: Push to main and pull requests
+- **Function**: Keeps the template deployable
+- **Actions**:
+  - Validates `config.json`
+  - Checks referenced local assets exist
+  - Blocks local machine-specific paths
+  - Rebuilds generated assets and fails if committed bundles are stale
 
 ## 💡 Best Practices
 
 1. **Repository Naming**: Use `username.github.io` for your main portfolio
-2. **Featured Projects**: Add "featured" topic to 3-5 of your best repositories
+2. **GitHub Projects**: Use `featured` mode for curated repos or `stars` mode for automatic ranking
 3. **Regular Updates**: Keep your `config.json` updated with latest experience
 4. **Logo Quality**: Use high-resolution logos for professional appearance
 5. **Content Length**: Keep descriptions concise but informative
+
+## 🧪 Local Validation
+
+Run these before pushing changes:
+
+```bash
+npm run validate
+npm run build
+```
+
+The validation script checks config shape, referenced assets, generated bundle freshness, and accidental local filesystem paths.
 
 ## 🤝 Contributing
 

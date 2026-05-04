@@ -12,11 +12,14 @@ The portfolio uses a modular architecture for better maintainability and organiz
 ├── index.html              # Main HTML file
 ├── config.json             # Your portfolio configuration
 ├── css/                    # Modular CSS files
+│   ├── bundle.css         # Generated production stylesheet
 │   ├── main.css           # Main stylesheet that imports all modules
 │   ├── base.css           # CSS reset, variables, base styles
 │   ├── components.css     # Shared component styles
 │   ├── loading.css        # Loading screen styles
 │   ├── theme.css          # Theme switcher and dark mode
+│   ├── scroll-to-top.css  # Scroll-to-top control
+│   ├── print.css          # Print/PDF styles
 │   ├── header.css         # Header and social links
 │   ├── about.css          # About section styles
 │   ├── skills.css         # Skills section styles
@@ -25,6 +28,7 @@ The portfolio uses a modular architecture for better maintainability and organiz
 │   ├── animations.css     # Keyframe animations
 │   └── responsive.css     # Mobile and tablet responsive styles
 ├── js/                     # Modular JavaScript files
+│   ├── bundle.js          # Generated production script
 │   ├── main.js            # Main application entry point
 │   ├── config-manager.js  # Configuration loading
 │   ├── seo-manager.js     # SEO meta tags management
@@ -33,11 +37,16 @@ The portfolio uses a modular architecture for better maintainability and organiz
 │   ├── section-manager.js # Content sections rendering
 │   ├── header-manager.js  # Header and social links
 │   └── github-projects-manager.js # GitHub API integration
+├── scripts/
+│   ├── build-assets.mjs    # Generates bundles and SEO assets
+│   ├── check-local-paths.mjs # Blocks local machine paths
+│   └── validate-config.mjs # Validates config and asset references
+├── robots.txt              # Generated crawler hints
+├── sitemap.xml             # Generated sitemap
+├── site.webmanifest        # Generated web app metadata
 ├── assets/
 │   ├── logos/              # Company logos (light and dark variants)
 │   └── projects/           # Project screenshots
-├── styles.css.backup       # Original monolithic CSS (backup)
-├── scripts.js.backup       # Original monolithic JS (backup)
 └── docs/                   # Documentation
     ├── CONFIGURATION.md    # Configuration guide
     ├── DEPLOYMENT.md       # Deployment guide
@@ -73,9 +82,9 @@ Each module has a specific responsibility:
 - Clear ownership of different features
 
 ### 6. Performance
-- Better browser caching as unchanged modules won't be re-downloaded
-- Potential for lazy loading of modules
-- More efficient development builds
+- Modular source files stay readable during development
+- Generated `css/bundle.css` and `js/bundle.js` reduce production requests
+- SEO assets are generated from config so GitHub Pages deployments stay static and fast
 
 ## 📋 CSS Module Architecture
 
@@ -99,6 +108,16 @@ Each module has a specific responsibility:
 - Dark/light mode transitions
 - CSS custom property overrides
 - Theme-specific styles
+
+#### `scroll-to-top.css`
+- Floating scroll-to-top control
+- Visibility and hover states
+- Mobile sizing
+
+#### `print.css`
+- Print/PDF layout
+- Hidden interactive controls
+- Expanded detail sections for exports
 
 ### Feature Modules
 
@@ -164,9 +183,9 @@ Each module has a specific responsibility:
 ```javascript
 class ConfigManager {
   async loadConfig()
-  validateConfig(config)
-  getFeatureFlags()
-  getSectionConfig(section)
+  showConfigError(message)
+  getSectionTitle(sectionKey)
+  hasContent(sectionKey)
 }
 ```
 
@@ -181,12 +200,11 @@ class ConfigManager {
 #### `theme-manager.js`
 - Theme switching logic
 - Preference persistence
-- System theme detection
+- Accessible toggle state
 - Theme transition animations
 
 #### `loading-manager.js`
 - Loading screen control
-- Progress tracking
 - Smooth transitions
 
 ### Feature Modules
@@ -195,7 +213,7 @@ class ConfigManager {
 - Dynamic content rendering
 - Section visibility control
 - Content validation
-- Template management
+- Native `<details>`/`<summary>` rendering for projects and experience
 
 #### `header-manager.js`
 - Header content rendering
@@ -203,9 +221,15 @@ class ConfigManager {
 - Profile image handling
 - Icon management
 
+#### `footer-manager.js`
+- Footer tagline rendering
+- Footer social links
+- Source code link generation
+- Built-with text controls
+
 #### `github-projects-manager.js`
 - GitHub API integration
-- Repository filtering
+- Featured-topic, most-starred, and custom-feed repository modes
 - Error handling
 - Rate limit management
 
@@ -219,6 +243,7 @@ main.js (Entry Point)
 ├── loading-manager.js
 ├── section-manager.js (depends on config-manager.js)
 ├── header-manager.js
+├── footer-manager.js
 └── github-projects-manager.js
 ```
 
@@ -231,25 +256,21 @@ main.js (Entry Point)
 
 ## 🚀 Module Loading Strategy
 
-### 1. Critical Path
-```javascript
-// Load essential modules first
-await ConfigManager.init()
-await SEOManager.init()
-ThemeManager.init()
+The browser loads `js/bundle.js` and `css/bundle.css` in production. The bundle is generated from the modular source files so development stays readable while GitHub Pages gets a smaller request footprint.
+
+### 1. Build Flow
+```bash
+npm run build
 ```
 
-### 2. Progressive Enhancement
-```javascript
-// Load feature modules progressively
-LoadingManager.show()
-await SectionManager.init()
-await HeaderManager.init()
-await GitHubProjectsManager.init()
-LoadingManager.hide()
-```
+This regenerates:
+- `css/bundle.css`
+- `js/bundle.js`
+- `site.webmanifest`
+- `robots.txt`
+- `sitemap.xml`
 
-### 3. Error Handling
+### 2. Error Handling
 ```javascript
 try {
   await module.init()
@@ -266,7 +287,8 @@ try {
 1. Create new CSS file in `/css/` directory
 2. Add specific styles for your feature
 3. Import in `main.css`
-4. Follow naming conventions
+4. Add it to `scripts/build-assets.mjs`
+5. Run `npm run build`
 
 ### JavaScript Module
 
@@ -274,6 +296,8 @@ try {
 2. Export class or functions
 3. Import in `main.js`
 4. Initialize in correct order
+5. Add it to `scripts/build-assets.mjs`
+6. Run `npm run build`
 
 ### Example: Adding a Contact Module
 
@@ -320,17 +344,11 @@ await ContactManager.init(config)
 
 ## 🔄 Backward Compatibility
 
-### Legacy Support
-- Original `styles.css` and `scripts.js` backed up as `.backup` files
-- All functionality remains exactly the same
-- No configuration changes required
-- Seamless migration path
-
-### Migration Path
-1. Current users see no changes
-2. New features use modular architecture
-3. Optional migration to new structure
-4. Full backward compatibility maintained
+### Template Support
+- Existing `config.json` fields continue to work
+- Project links support both the original `link` object and a newer `links` array
+- GitHub projects default to the original `featured` topic behavior
+- Generated bundles are committed so GitHub Pages works without a separate build service
 
 ## 🚀 Future Enhancements
 

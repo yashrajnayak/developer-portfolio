@@ -160,13 +160,21 @@ Organize skills into categories:
 
 ## 🐙 GitHub Projects
 
-Automatically shows repositories with the "featured" topic:
+The GitHub projects section supports three modes:
+
+- `featured`: show repositories with a topic such as `featured`
+- `stars`: show your most-starred public repositories
+- `feed`: load a custom JSON feed first, then fall back to GitHub APIs
 
 ```json
 {
   "github_username": "your-github-username",
   "github_projects": {
-    "title": "Featured Projects"
+    "title": "Featured Projects",
+    "mode": "featured",
+    "topic": "featured",
+    "max_repos": 6,
+    "excluded_repos": []
   }
 }
 ```
@@ -175,6 +183,34 @@ Automatically shows repositories with the "featured" topic:
 1. Go to your repository on GitHub
 2. Click the gear icon next to "About"
 3. Add "featured" to the Topics section
+
+**To show most-starred repositories:**
+
+```json
+{
+  "github_projects": {
+    "title": "Most Starred Projects",
+    "mode": "stars",
+    "max_repos": 6,
+    "excluded_repos": ["your-github-username"]
+  }
+}
+```
+
+**To use a custom feed:**
+
+```json
+{
+  "github_projects": {
+    "title": "Selected Repositories",
+    "mode": "feed",
+    "source_url": "https://example.com/top-repos.json",
+    "max_repos": 6
+  }
+}
+```
+
+Feed items should include `name`, `url`, and optional `description`, `homepage`, `language`, `stars`, `forks`, `topics`, `updatedAt`, and `pushedAt` fields.
 
 ## ⚙️ SEO & Site Settings
 
@@ -189,12 +225,15 @@ Automatically shows repositories with the "featured" topic:
       "keywords": "your, keywords, here",
       "author": "Your Name",
       "og_image": "https://your-image-url.com/image.jpg",
+      "og_image_alt": "Profile photo of Your Name",
       "twitter_card": "summary_large_image",
       "base_url": "https://your-website.com"
     }
   }
 }
 ```
+
+The build script uses this section to generate `site.webmanifest`, `robots.txt`, and `sitemap.xml`. Run `npm run build` after changing `site.seo.base_url`, title, or description locally.
 
 ## 🎨 Header Configuration
 
@@ -247,9 +286,9 @@ Customize your footer content and links:
 1. **Start Simple**: Begin with minimal content and add more later
 2. **Optional Fields**: Most fields are optional - only add what you have
 3. **Flexible Arrays**: Lists can have 1 item or 100 items
-4. **GitHub Integration**: Add "featured" topic to repos you want to showcase
+4. **GitHub Integration**: Use `featured`, `stars`, or `feed` mode for repositories
 5. **No Code Changes**: Everything is configured through JSON only
-6. **JSON Validation**: Use a JSON validator if the site shows errors
+6. **Validation**: Run `npm run validate` before pushing changes
 
 ## 🚨 Common Issues & Solutions
 
@@ -260,6 +299,7 @@ Customize your footer content and links:
 5. **Broken Layout**: Check that all required fields are present
 6. **Empty Sections**: Sections with no content will show placeholder text
 7. **Logo Display**: If only one logo is provided, it will be used for both light and dark themes
+8. **Stale Generated Files**: Run `npm run build` if CI says bundles or SEO files changed
 
 ## 🔧 Content Validation
 
@@ -268,3 +308,12 @@ The portfolio automatically validates your content:
 - Missing `github_username` will skip GitHub projects section
 - Invalid icon names will show warnings in the browser console
 - All fields except the core structure are optional
+
+The repository also includes local validation:
+
+```bash
+npm run validate
+npm run build
+```
+
+`npm run validate` checks config shape, referenced assets, and accidental local machine-specific paths before publishing.

@@ -1,0 +1,27 @@
+name: Validate Site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate-site:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate config and generated assets
+        run: |
+          npm run validate
+          npm run build
+          git diff --exit-code css/bundle.css js/bundle.js robots.txt sitemap.xml site.webmanifest

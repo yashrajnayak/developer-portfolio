@@ -41,7 +41,7 @@ jobs:
         if: steps.check-init.outputs.skip == 'false'
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Validate config.json
         if: steps.check-init.outputs.skip == 'false'
@@ -64,6 +64,7 @@ jobs:
         run: |
           echo "🚀 Generating README from config.json..."
           node .github/workflows/update-readme.js
+          npm run build
 
       - name: Check for changes
         if: steps.check-init.outputs.skip == 'false'
@@ -80,6 +81,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add README.md
+          git add README.md css/bundle.css js/bundle.js robots.txt sitemap.xml site.webmanifest
           git commit -m "🤖 Auto-update README.md from config.json"
           git push

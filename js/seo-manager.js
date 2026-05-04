@@ -1,46 +1,60 @@
 // SEO Manager Module
 export class SEOManager {
-    // Update SEO meta tags
+    setContent(selector, value) {
+        const element = document.querySelector(selector);
+        if (element && value !== undefined) {
+            element.content = value;
+        }
+    }
+
+    setHref(selector, value) {
+        const element = document.querySelector(selector);
+        if (element && value) {
+            element.href = value;
+        }
+    }
+
     updateSEOTags(config) {
-        const seo = config.site.seo;
-        
-        // Update basic meta tags
-        document.title = seo.title;
-        document.querySelector('meta[name="description"]').content = seo.description;
-        document.querySelector('meta[name="keywords"]').content = seo.keywords;
-        document.querySelector('meta[name="author"]').content = seo.author;
-
-        // Update Open Graph tags
-        document.querySelector('meta[property="og:title"]').content = seo.title;
-        document.querySelector('meta[property="og:description"]').content = seo.description;
-        document.querySelector('meta[property="og:image"]').content = seo.og_image;
-        document.querySelector('meta[property="og:url"]').content = seo.base_url;
-
-        // Update Twitter Card tags
-        document.querySelector('meta[property="twitter:title"]').content = seo.title;
-        document.querySelector('meta[property="twitter:description"]').content = seo.description;
-        document.querySelector('meta[property="twitter:image"]').content = seo.og_image;
-        document.querySelector('meta[property="twitter:card"]').content = seo.twitter_card;
-        document.querySelector('meta[property="twitter:url"]').content = seo.base_url;
-
-        // Extract GitHub username from social links for JSON-LD
-        const githubLink = config.social_links?.find(link => link.icon === 'github');
-        const githubUrl = githubLink?.url || `https://github.com/${config.github_username || ''}`;
-        const linkedinLink = config.social_links?.find(link => link.icon === 'linkedin');
-        
-        // Build sameAs array dynamically
+        const seo = config.site?.seo || {};
+        const title = seo.title || config.site?.title || config.header?.greeting || 'Developer Portfolio';
+        const description = seo.description || config.site?.description || 'Developer portfolio';
+        const baseUrl = (seo.base_url || '').replace(/\/$/, '');
+        const image = seo.og_image || (config.github_username ? `https://avatars.githubusercontent.com/${config.github_username}?s=512` : '');
+        const imageAlt = seo.og_image_alt || `Profile photo of ${config.header?.greeting || 'portfolio owner'}`;
         const sameAs = config.social_links?.map(link => link.url).filter(Boolean) || [];
 
-        // Update JSON-LD
+        document.title = title;
+
+        this.setContent('meta[name="description"]', description);
+        this.setContent('meta[name="keywords"]', seo.keywords || '');
+        this.setContent('meta[name="author"]', seo.author || config.header?.greeting || '');
+        this.setContent('meta[name="robots"]', seo.robots || 'index, follow');
+
+        this.setContent('meta[property="og:title"]', title);
+        this.setContent('meta[property="og:description"]', description);
+        this.setContent('meta[property="og:image"]', image);
+        this.setContent('meta[property="og:image:alt"]', imageAlt);
+        this.setContent('meta[property="og:url"]', baseUrl);
+
+        this.setContent('meta[property="twitter:title"]', title);
+        this.setContent('meta[property="twitter:description"]', description);
+        this.setContent('meta[property="twitter:image"]', image);
+        this.setContent('meta[property="twitter:image:alt"]', imageAlt);
+        this.setContent('meta[property="twitter:card"]', seo.twitter_card || 'summary_large_image');
+        this.setContent('meta[property="twitter:url"]', baseUrl);
+
+        this.setHref('link[rel="canonical"]', baseUrl ? `${baseUrl}/` : '');
+
         const jsonLD = {
             "@context": "https://schema.org",
             "@type": "Person",
-            "name": config.header.greeting,
-            "url": seo.base_url,
-            "sameAs": sameAs
+            "name": config.header?.greeting || '',
+            "url": baseUrl,
+            "image": image,
+            "sameAs": sameAs,
+            "knowsAbout": this.getKnowsAbout(config)
         };
 
-        // Add work info if available
         if (config.experience?.jobs?.[0]) {
             jsonLD.jobTitle = config.experience.jobs[0].role;
             jsonLD.worksFor = {
@@ -48,7 +62,19 @@ export class SEOManager {
                 "name": config.experience.jobs[0].company
             };
         }
-        
-        document.querySelector('script[type="application/ld+json"]').textContent = JSON.stringify(jsonLD, null, 2);
+
+        const schema = document.querySelector('script[type="application/ld+json"]');
+        if (schema) {
+            schema.textContent = JSON.stringify(jsonLD, null, 2);
+        }
+    }
+
+    getKnowsAbout(config) {
+        const skills = config.skills?.categories
+            ?.flatMap(category => category.items || [])
+            .map(item => typeof item === 'object' ? item.name : item)
+            .filter(Boolean) || [];
+
+        return [...new Set(skills)].slice(0, 12);
     }
 }

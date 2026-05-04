@@ -82,7 +82,7 @@ export class FooterManager {
         link.href = social.url;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
-        link.setAttribute('aria-label', `${social.name} Profile`);
+        link.setAttribute('aria-label', social.name === 'Source Code' ? 'View source code' : `${social.name} Profile`);
 
         const icon = iconTemplate.content.cloneNode(true);
         link.appendChild(icon);

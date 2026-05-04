@@ -11,6 +11,7 @@ export class ThemeManager {
         // Check for saved theme preference
         const savedTheme = localStorage.getItem('theme') || 'light';
         this.root.setAttribute('data-theme', savedTheme);
+        this.updateToggleState(savedTheme);
 
         // Add event listener for theme switch
         if (this.themeSwitch) {
@@ -26,9 +27,14 @@ export class ThemeManager {
         
         this.root.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
+        this.updateToggleState(newTheme);
     }
 
-    getCurrentTheme() {
-        return this.root.getAttribute('data-theme');
+    updateToggleState(theme) {
+        if (!this.themeSwitch) return;
+
+        const isDark = theme === 'dark';
+        this.themeSwitch.setAttribute('aria-pressed', String(isDark));
+        this.themeSwitch.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
     }
 }

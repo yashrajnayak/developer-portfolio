@@ -5,10 +5,16 @@
     box-sizing: border-box;
 }
 
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 /* Custom Properties */
 :root {
     --primary-color: #2563eb;
     --primary-color-dark: #1e40af;
+    --on-primary-color: #ffffff;
     --secondary-color: #1e293b;
     --background-color: #f8fafc;
     --card-background: #ffffff;
@@ -16,15 +22,23 @@
     --text-muted: #64748b;
     --heading-color: #2563eb;
     --border-color: #e2e8f0;
-    --border-radius: 1rem;
+    --border-radius: 8px;
+    --border-radius-lg: 8px;
+    --border-radius-xl: 8px;
+    --border-radius-2xl: 8px;
+    --border-radius-full: 9999px;
     --transition: all 0.3s ease;
     --focus-ring-color: #3b82f6;
     --focus-ring-offset: 3px;
+    --font-display: 'Outfit', sans-serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Dark mode */
 :root[data-theme="dark"] {
+    --primary-color: #60a5fa;
     --primary-color-dark: #3b82f6;
+    --on-primary-color: #0f172a;
     --background-color: #0f172a;
     --card-background: #1e293b;
     --text-color: #f1f5f9;
@@ -39,9 +53,16 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     transition: var(--transition);
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+img,
+svg {
+    max-width: 100%;
 }
 
 /* Accessibility - Focus Styles */
@@ -55,17 +76,52 @@ body {
     width: min(1200px, 90%);
     margin: 0 auto;
     padding: clamp(1rem, 5vw, 3rem);
+    min-width: 0;
 }
 
 /* Section Styles */
 section {
     margin-bottom: 4rem;
+    min-width: 0;
 }
 
 section h2 {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     color: var(--text-color);
-    font-size: 1.5rem;
+    font-size: 1.875rem;
     font-weight: 700;
+    font-family: var(--font-display);
+    overflow-wrap: anywhere;
+}
+
+/* Glassmorphism Card Utility */
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius-xl);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.glass-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .glass-card {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+    }
 }

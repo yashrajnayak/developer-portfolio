@@ -14,7 +14,8 @@
       "description": "Developer Portfolio of Yashraj Nayak - Program Manager at GitHub Developer Relations",
       "keywords": "developer, portfolio, github, developer relations",
       "author": "Yashraj Nayak",
-      "og_image": "https://avatars.githubusercontent.com/yashrajnayak",
+      "og_image": "https://avatars.githubusercontent.com/yashrajnayak?s=512",
+      "og_image_alt": "Profile photo of Yashraj Nayak",
       "twitter_card": "summary_large_image",
       "base_url": "https://yashrajnayak.dev"
     }
@@ -191,7 +192,11 @@
     ]
   },
   "github_projects": {
-    "title": "Projects on GitHub"
+    "title": "Projects on GitHub",
+    "mode": "featured",
+    "topic": "featured",
+    "max_repos": 6,
+    "excluded_repos": []
   },
   "footer": {
     "show_social_links": true,

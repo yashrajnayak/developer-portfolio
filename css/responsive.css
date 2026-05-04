@@ -4,42 +4,60 @@
         width: 95%;
         padding: 1rem;
     }
-    
-    .profile-img {
-        width: 140px;
-        height: 140px;
+
+    header {
+        padding-top: 4rem;
     }
-    
+
+    .profile-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-img-wrapper::before {
+        filter: blur(30px);
+    }
+
     .social-links {
         gap: 0.75rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         justify-content: center;
+        width: min(100%, 22rem);
+        margin-left: auto;
+        margin-right: auto;
     }
-    
+
     .social-links a {
-        flex: 0 1 auto;
-        min-width: 120px;
-        max-width: 180px;
-        padding: 0.625rem 1rem;
+        width: 100%;
+        padding: 0.625rem 0.75rem;
         font-size: 0.875rem;
         justify-content: center;
     }
-    
+
     .skills-grid {
         grid-template-columns: 1fr;
+        gap: 1.25rem;
     }
-    
+
     .skill-category {
         text-align: center;
     }
-    
+
+    .skill-category h3 {
+        justify-content: center;
+    }
+
     .skill-category li {
+        justify-content: center;
         padding-left: 0;
     }
-    
+
     .skill-category li::before {
         display: none;
     }
-     .experience-header {
+
+    .experience-header {
         flex-direction: column;
         text-align: center;
         gap: 1rem;
@@ -50,31 +68,25 @@
     }
 
     .experience-content {
-        padding: 0;
+        padding: 0 1.5rem 1.5rem;
         text-align: left;
-        max-height: 0;
-        overflow: hidden;
     }
 
-    .experience-item.expanded .experience-content {
-        padding: 0 1rem 1.5rem;
-        max-height: 500px;
-    }
-    
     .company-logo {
-        width: 180px;
+        width: 120px;
         margin: 0 auto;
         order: 2;
     }
 
     .company-logo img {
-        max-height: 40px;
+        max-height: 32px;
     }
 
     .project-item {
         flex-direction: column;
         text-align: center;
         cursor: pointer;
+        border-radius: var(--border-radius-xl);
     }
 
     /* Show project header on mobile for accordion */
@@ -86,26 +98,16 @@
         align-items: center;
     }
 
-    /* Hide project content by default on mobile */
+    /* Mobile project content spacing (native <details> handles visibility) */
     .project-content {
         width: 100%;
-        padding: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Show project content when expanded */
-    .project-item.expanded .project-content {
         padding: 0 1.5rem 1.5rem;
-        max-height: 500px;
-        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .project-content ul {
         text-align: left;
     }
-    
+
     .project-image {
         width: 100%;
         min-height: unset;
@@ -115,13 +117,40 @@
 
     .project-card {
         text-align: center;
+        padding: 1.5rem;
     }
-    
+
     .project-links {
         position: relative;
         left: 0;
         bottom: 0;
         justify-content: center;
         margin-top: 1rem;
+    }
+
+    /* Theme toggle position adjustment */
+    .theme-switch {
+        top: 1rem;
+        right: 1rem;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    .social-links a {
+        padding: 0.5rem 0.625rem;
+        font-size: 0.8125rem;
     }
 }

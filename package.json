@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "build": "node scripts/build-assets.mjs",
+    "check:paths": "node scripts/check-local-paths.mjs",
+    "validate": "node scripts/validate-config.mjs && npm run check:paths"
+  }
+}
