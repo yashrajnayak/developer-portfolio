@@ -22,7 +22,7 @@ function extension(path) {
 }
 
 function scanFile(path) {
-  if (ignoredFiles.has(path)) return;
+  if (ignoredFiles.has(path.replaceAll('\\', '/'))) return;
   if (ignoredExtensions.has(extension(path))) return;
 
   const buffer = readFileSync(path);

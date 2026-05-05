@@ -44,7 +44,7 @@ function buildBundles() {
 
   const jsBundle = jsFiles
     .map(file => readFileSync(file, 'utf8')
-      .replace(/^import .+;\n/gm, '')
+      .replace(/^import .+;\r?\n/gm, '')
       .replace(/^export class /gm, 'class ')
       .trim())
     .join('\n\n');
