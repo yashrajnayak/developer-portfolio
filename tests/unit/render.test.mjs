@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFileSync} from 'node:fs';
-import {escapeHtml, renderHtml, renderProfileReadme, renderSiteReadme} from '../../scripts/lib/render.mjs';
+import {escapeHtml, escapeMarkdown, renderHtml, renderProfileReadme, renderSiteReadme} from '../../scripts/lib/render.mjs';
 
 const config = JSON.parse(readFileSync('config.json', 'utf8'));
 
@@ -12,6 +12,10 @@ test('HTML escaping protects content and attributes', () => {
   const html = renderHtml(unsafe, {year: 2026});
   assert.doesNotMatch(html, /<img src=x onerror/);
   assert.match(html, /&lt;img src=x onerror=alert\(1\)&gt;/);
+});
+
+test('Markdown escaping prevents generated README structure injection', () => {
+  assert.equal(escapeMarkdown('name | [link]\nnext'), 'name \\| \\[link\\] next');
 });
 
 test('static render contains meaningful SEO, landmarks, content, and JSON-LD', () => {

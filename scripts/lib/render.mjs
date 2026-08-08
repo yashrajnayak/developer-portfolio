@@ -8,6 +8,10 @@ export function escapeJson(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026');
 }
 
+export function escapeMarkdown(value = '') {
+  return String(value).replace(/([\\`*_[\]<>|])/g, '\\$1').replace(/\r?\n/g, ' ');
+}
+
 function externalAttributes(url) {
   return /^https:\/\//i.test(url) ? ' target="_blank" rel="noopener noreferrer"' : '';
 }
@@ -190,11 +194,13 @@ export function renderHtml(config, {year = new Date().getUTCFullYear()} = {}) {
 }
 
 export function renderSiteReadme(config) {
-  return `# ${config.person.name}\n\n${config.person.professional_headline}\n\n[Visit the portfolio](${config.site.base_url}) · [GitHub](https://github.com/${config.person.github_username})\n\n## Selected impact\n\n${config.projects.items.filter(item => item.featured).map(item => `- **${item.name}** — ${item.summary}`).join('\n')}\n\n## Contact\n\n${config.contact.summary}\n\n${config.contact.social_links.map(item => `- [${item.name}](${item.url})`).join('\n')}\n`;
+  return `# ${escapeMarkdown(config.person.name)}\n\n${escapeMarkdown(config.person.professional_headline)}\n\n[Visit the portfolio](${config.site.base_url}) · [GitHub](https://github.com/${config.person.github_username})\n\n## Selected impact\n\n${config.projects.items.filter(item => item.featured).map(item => `- **${escapeMarkdown(item.name)}** — ${escapeMarkdown(item.summary)}`).join('\n')}\n\n## Contact\n\n${escapeMarkdown(config.contact.summary)}\n\n${config.contact.social_links.map(item => `- [${escapeMarkdown(item.name)}](${item.url})`).join('\n')}\n`;
 }
 
 export function renderProfileReadme(config) {
   const current = config.experience.jobs[0];
   const selected = config.projects.items.filter(item => item.featured).slice(0, 3);
-  return `# Hi, I’m ${config.person.name}\n\n${config.person.professional_headline}. ${config.hero.summary}\n\n- I’m currently **${current.role}** at **${current.company}**.\n- I’m based in **${config.person.location}**.\n- My focus areas are ${config.person.focus_areas.map(item => `**${item}**`).join(', ')}.\n\n## Selected work\n\n${selected.map(item => `- **${item.name}** — ${item.summary}${item.links[0] ? ` ([view](${item.links[0].url}))` : ''}`).join('\n')}\n\n## Connect\n\n${config.contact.social_links.map(item => `- [${item.name}](${item.url})`).join('\n')}\n\n[View my portfolio](${config.site.base_url})\n`;
+  const credentials = config.proof.items.filter(item => typeof item === 'object');
+  const repoRows = config.open_source.items.map(item => `| [${escapeMarkdown(item.name)}](${item.url}) | ${escapeMarkdown(item.summary)} | ${escapeMarkdown(item.language || '—')} |`).join('\n');
+  return `# Hi, I’m ${escapeMarkdown(config.person.name)}\n\n${escapeMarkdown(config.person.professional_headline)}. ${escapeMarkdown(config.hero.summary)}\n\n- I’m currently **${escapeMarkdown(current.role)}** at **${escapeMarkdown(current.company)}**.\n- I’m based in **${escapeMarkdown(config.person.location)}**.\n- My focus areas are ${config.person.focus_areas.map(item => `**${escapeMarkdown(item)}**`).join(', ')}.\n\n## Selected impact\n\n${config.impact_metrics.map(item => `- **${escapeMarkdown(item.value)}** ${escapeMarkdown(item.label)}`).join('\n')}\n\n## Selected work\n\n${selected.map(item => `- **${escapeMarkdown(item.name)}** — ${escapeMarkdown(item.summary)}${item.links[0] ? ` ([view](${item.links[0].url}))` : ''}`).join('\n')}\n${credentials.length ? `\n## Credentials\n\n${credentials.map(item => `- [${escapeMarkdown(item.name)}](${item.url})`).join('\n')}\n` : ''}\n## Open-source work\n\n<!-- TOP-REPOS:START -->\n| Repository | Description | Language |\n| --- | --- | --- |\n${repoRows}\n<!-- TOP-REPOS:END -->\n\n## Connect\n\n${config.contact.social_links.map(item => `- [${escapeMarkdown(item.name)}](${item.url})`).join('\n')}\n\n[View my portfolio](${config.site.base_url})\n`;
 }
