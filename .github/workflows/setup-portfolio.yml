@@ -1,0 +1,76 @@
+name: Set up portfolio
+
+on:
+  workflow_dispatch:
+    inputs:
+      full_name:
+        description: Your full name
+        required: true
+        type: string
+      professional_headline:
+        description: A short professional headline
+        required: true
+        type: string
+      current_role:
+        description: Your current role
+        required: true
+        type: string
+      organization:
+        description: Your current organization
+        required: true
+        type: string
+      location:
+        description: Your location
+        required: true
+        type: string
+      linkedin_url:
+        description: Your public LinkedIn profile URL
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: portfolio-setup
+  cancel-in-progress: false
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate personal configuration
+        env:
+          GITHUB_USERNAME: ${{ github.repository_owner }}
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+          FULL_NAME: ${{ inputs.full_name }}
+          PROFESSIONAL_HEADLINE: ${{ inputs.professional_headline }}
+          CURRENT_ROLE: ${{ inputs.current_role }}
+          ORGANIZATION: ${{ inputs.organization }}
+          LOCATION: ${{ inputs.location }}
+          LINKEDIN_URL: ${{ inputs.linkedin_url }}
+        run: node scripts/setup.mjs
+
+      - name: Validate generated files
+        run: npm run validate
+
+      - name: Commit generated allowlist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- config.json README.md assets/readme
+          git diff --cached --quiet || git commit -m "Set up personal portfolio"
+          git push
