@@ -202,8 +202,8 @@ button { color: inherit; font: inherit; }
   :root { --header-height: 64px; }
   .header-inner, .footer-inner, .section-inner, .page-shell { width: min(calc(100% - 32px), var(--container)); }
   .hero { display: flex; min-height: auto; flex-direction: column-reverse; gap: 26px; padding-block: 26px 38px; }
-  .hero-portrait { width: 100%; aspect-ratio: 16 / 9; }
-  .hero-portrait img { object-position: 50% 25%; }
+  .hero-portrait { width: 100%; aspect-ratio: 3 / 2; }
+  .hero-portrait img { object-position: 50% 42%; }
   .hero-copy h1 { font-size: clamp(2.15rem, 10vw, 3rem); }
   .hero-copy h1::before { width: 5px; margin-right: 11px; }
   .hero-copy p { margin-top: 20px; font-size: 1rem; }
