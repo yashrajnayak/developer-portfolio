@@ -1,5 +1,8 @@
 import {expect, test} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import {loadConfig} from '../../scripts/lib/config.mjs';
+
+const {config} = loadConfig(process.env.PORTFOLIO_CONFIG || 'config.json');
 
 const viewports = [
   {name: 'mobile', width: 390, height: 844},
@@ -62,11 +65,11 @@ test('generated HTML is useful before JavaScript runs', async ({browser}) => {
   const context = await browser.newContext({javaScriptEnabled: false, viewport: {width: 768, height: 1024}});
   const page = await context.newPage();
   await page.goto('/');
-  await expect(page).toHaveTitle(/Developer Portfolio/);
-  await expect(page.locator('h1')).toContainText('I build useful products');
+  await expect(page).toHaveTitle(config.site.seo.title);
+  await expect(page.locator('h1')).toHaveText(config.hero.heading);
   await expect(page.locator('main')).toBeVisible();
-  await expect(page.locator('img[alt="Portrait of Your Name"]')).toBeVisible();
-  await expect(page.locator('#impact')).toContainText('Portfolio v2');
+  await expect(page.getByAltText(config.site.seo.og_image_alt, {exact: true})).toBeVisible();
+  await expect(page.locator('#impact')).toContainText(config.projects.items[0].name);
   await expect(page.locator('#contact a')).toHaveAttribute('href', /^https:\/\//);
   await context.close();
 });
