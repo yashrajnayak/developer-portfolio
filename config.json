@@ -1,207 +1,104 @@
 {
-  "features": {
-    "about": true,
-    "projects": true,
-    "experience": true,
-    "skills": true,
-    "github_projects": true
-  },
+  "$schema": "./config.schema.json",
+  "schema_version": 2,
   "site": {
-    "title": "Yashraj Nayak",
-    "description": "Developer Portfolio",
+    "base_url": "https://username.github.io",
+    "language": "en",
     "seo": {
-      "title": "Yashraj Nayak - Developer Portfolio",
-      "description": "Developer Portfolio of Yashraj Nayak - Program Manager at GitHub Developer Relations",
-      "keywords": "developer, portfolio, github, developer relations",
-      "author": "Yashraj Nayak",
-      "og_image": "https://avatars.githubusercontent.com/yashrajnayak?s=512",
-      "og_image_alt": "Profile photo of Yashraj Nayak",
-      "twitter_card": "summary_large_image",
-      "base_url": "https://yashrajnayak.dev"
+      "title": "Your Name — Developer Portfolio",
+      "description": "Selected work, experience, and open-source projects by Your Name.",
+      "keywords": ["developer", "portfolio", "open source"],
+      "og_image": "https://avatars.githubusercontent.com/username?s=1200",
+      "og_image_alt": "Portrait of Your Name"
     }
   },
-  "header": {
-    "greeting": "Yashraj Nayak",
-    "tagline": "Developer and People Person."
+  "person": {
+    "name": "Your Name",
+    "professional_headline": "Developer and technical community builder",
+    "current_role": "Your current role",
+    "organization": "Your organization",
+    "location": "Your location",
+    "avatar": "https://avatars.githubusercontent.com/username?s=512",
+    "github_username": "username",
+    "focus_areas": ["Product engineering", "Developer education", "Open source"],
+    "languages": ["English"]
   },
-  "social_links": [
-    {
-      "name": "GitHub",
-      "url": "https://github.com/yashrajnayak",
-      "icon": "github",
-      "required": true
-    },
-    {
-      "name": "LinkedIn",
-      "url": "https://www.linkedin.com/in/yashrajnayak/",
-      "icon": "linkedin"
-    }
+  "hero": {
+    "heading": "I build useful products and help developer communities thrive.",
+    "summary": "A short, specific statement about what you do, who you help, and the outcomes you create.",
+    "primary_cta": {"label": "View selected work", "url": "#impact"},
+    "secondary_cta": {"label": "Connect on LinkedIn", "url": "https://www.linkedin.com/in/username/"}
+  },
+  "impact_metrics": [
+    {"value": "10+", "label": "Projects shipped"},
+    {"value": "5+", "label": "Years of experience"},
+    {"value": "3", "label": "Focus areas"},
+    {"value": "1", "label": "Clear point of view"}
   ],
-  "github_username": "yashrajnayak",
-  "about": {
-    "paragraphs": [
-      "My community journey began as a Microsoft Student Partner during university, where I represented India at a worldwide summit at Microsoft HQ. Over the past 8 years, I've built and scaled developer communities that have reached hundreds of thousands of tech enthusiasts.",
-      "Currently working as Program Manager at GitHub Developer Relations, where I help spark creativity and excitement around GitHub while finding new ways to connect with developers worldwide."
-    ]
-  },
+  "navigation": [
+    {"label": "Impact", "target": "impact"},
+    {"label": "Experience", "target": "experience"},
+    {"label": "Work", "target": "work"},
+    {"label": "Contact", "target": "contact"}
+  ],
   "projects": {
-    "title": "Latest Projects",
+    "title": "Selected impact",
     "items": [
       {
-        "name": "GitHub Constellation 2024",
-        "date": "June 12, 2024",
-        "description": [
-          "GitHub's developer conference featuring a keynote by GitHub CEO Thomas Dohmke, 20+ speakers and 900+ in-person attendees.",
-          "Collaborated with external agencies and multiple teams within organization.",
-          "Managed end-to-end execution, including website management, venue logistics, emceeing, speakers and attendee engagement."
-        ],
-        "picture": "assets/projects/GitHub_Constellation_2024.jpeg"
-      },
-      {
-        "name": "GitTogether Meetups Automation System",
-        "date": "2024",
-        "description": [
-          "4-stage GitHub Actions pipeline with multi-repository orchestration and API integration",
-          "Automated issue creation, assignment, and lifecycle management with 80% reduction in manual overhead",
-          "Tech Stack: Node.js, GitHub Actions, GraphQL/REST APIs, YAML configuration management"
-        ],
-        "picture": "assets/projects/GitTogether_Meetups_Automation_System.png"
-      },
-      {
-        "name": "GitTogethers Registration Web Platform",
-        "date": "2024",
-        "description": [
-          "Modern responsive web application for developer event registration and check-in management",
-          "GitHub API integration with smart event filtering, form validation, and mobile optimization",
-          "Tech Stack: Vanilla JavaScript (ES6), jQuery, CSS Grid/Flexbox, GitHub API"
-        ],
-        "picture": "assets/projects/GitTogethers_Registration_Web_Platform.png",
-        "link": {
-          "url": "https://gittogethers.github.io/",
-          "title": "View Live Demo"
-        }
+        "id": "portfolio-v2",
+        "name": "Portfolio v2",
+        "date": "2026",
+        "role": "Designer and developer",
+        "summary": "A static portfolio designed around clear positioning, evidence, and accessibility.",
+        "challenge": "Turn a long résumé into a focused, easy-to-scan story.",
+        "actions": ["Designed a schema-driven content system", "Generated meaningful HTML at build time"],
+        "outcomes": ["Fast static delivery", "Accessible navigation and disclosures"],
+        "featured": true,
+        "media": {"src": "assets/projects/Placeholder.png", "alt": "Portfolio project preview", "fit": "contain"},
+        "links": [{"label": "View project", "url": "https://github.com/username/username.github.io"}]
       }
     ]
   },
   "experience": {
-    "title": "Professional Experience",
+    "title": "Experience",
+    "visible_count": 1,
     "jobs": [
       {
-        "company": "GitHub",
-        "role": "Program Manager, Developer Relations",
-        "date": "Mar 2024 - Present",
-        "responsibilities": [
-          "Successfully hosted GitHub Constellation 2024, 900+ developer conference in Bengaluru, India",
-          "Growing key programs like the Global Meetups Program and 1st party events such as GitHub Universe Recap and GitHub Connect India",
-          "Scaling GitTogethers in India, developer meetups led by local community experts and powered by GitHub. Hosting 4 premier developer meetups every month in Bengaluru, Delhi NCR, Hyderabad, and Mumbai. Featured over 90 speakers and engaged more than 2,000 of India's most active developers, bringing them closer to the GitHub ecosystem"
-        ],
-        "logo": "assets/logos/GitHub_Logo.png",
-        "logo_dark": "assets/logos/GitHub_Logo_White.png"
-      },
-      {
-        "company": "ANSR",
-        "role": "Senior Community Manager",
-        "date": "Mar 2023 - Feb 2024",
-        "responsibilities": [
-          "Built community programs from scratch, reaching 6,000+ active developers in 8 months",
-          "Hosted 20 successful tech events with 3,000+ attendees (React-n-Roll Meetups, Women in Tech Mixers)",
-          "Advocated for community needs within the GCC ecosystem"
-        ],
-        "logo": "assets/logos/ANSR_Logo.png",
-        "logo_dark": "assets/logos/ANSR_Logo_White.png"
-      },
-      {
-        "company": "OutSystems",
-        "role": "APAC Community Growth Manager",
-        "date": "Mar 2021 - Feb 2023",
-        "responsibilities": [
-          "Expanded global community programs throughout Asia-Pacific",
-          "Led initiatives like #14DaysOfOutSystems Challenge and OutSystems Student Accelerator",
-          "Supported OutSystems User Group organizers across APAC to build strong local communities"
-        ],
-        "logo": "assets/logos/OutSystems_Logo.png",
-        "logo_dark": "assets/logos/OutSystems_Logo_White.png"
-      },
-      {
-        "company": "Progate",
-        "role": "India Community Manager",
-        "date": "Jun 2018 - Feb 2021",
-        "responsibilities": [
-          "Helped this Japanese coding learning platform to grow userbase to 200,000+ learners in India",
-          "Established Community Partnership with Hacktoberfest 2020 and other non-profits",
-          "Organized 30+ Learning Jams across major Indian cities",
-          "Reached 6,000+ high school students through Hour of Code™ 2018 Campaign"
-        ],
-        "logo": "assets/logos/Progate_Logo.png",
-        "logo_dark": "assets/logos/Progate_Logo_White.png"
-      },
-      {
-        "company": "Skillenza",
-        "role": "Community Manager",
-        "date": "Aug 2017 - Feb 2018",
-        "responsibilities": [
-          "Worked alongside teams from DigitalOcean, AWS, Digital Domain, Société Générale, etc to plan and execute developer events across the country (both online and offline)",
-          "Helped in the execution of Hack2Innovate 2017, series of 7 deep-tech hackathons while working with teams from T-Hub, Microsoft, NVIDIA and PwC",
-          "Handled Skillenza's student developer engagement and supported 25+ hackathons in different campuses across the country"
-        ],
-        "logo": "assets/logos/Skillenza_Logo.png",
-        "logo_dark": "assets/logos/Skillenza_Logo_White.png"
+        "company": "Your organization",
+        "role": "Your current role",
+        "date": "2024 — Present",
+        "responsibilities": ["Describe the problem you own", "Add one measurable result"],
+        "logo": "assets/logos/Placeholder_Logo.png",
+        "logo_dark": "assets/logos/Placeholder_Logo.png"
       }
     ]
   },
-  "skills": {
-    "title": "Skills & Technologies",
-    "categories": [
+  "proof": {
+    "title": "Capabilities & credentials",
+    "items": ["Product engineering", "Developer education", "Community systems", "Technical writing"]
+  },
+  "open_source": {
+    "title": "Tools and open-source work",
+    "items": [
       {
-        "name": "Technical",
-        "items": [
-          "JavaScript and C#",
-          "React",
-          "CI/CD with GitHub Actions",
-          "Microsoft Azure",
-          "Technical Presentations"
-        ]
-      },
-      {
-        "name": "Developer Relations",
-        "items": [
-          "Program Management",
-          "Developer Engagement",
-          "Developer Advocacy",
-          "User Research and Feedback",
-          "Community Building"
-        ]
-      },
-      {
-        "name": "Certifications",
-        "items": [
-          {
-            "name": "GitHub Foundations",
-            "url": "https://www.credly.com/badges/7754da79-07d9-4abe-9f9e-e0c9a84a34b4/"
-          },
-          {
-            "name": "GitHub Copilot",
-            "url": "https://www.credly.com/badges/370d77b0-13a0-45a7-92ae-3326f64786be/"
-          },
-          {
-            "name": "Meta Certified Community Manager",
-            "url": "https://www.credly.com/badges/9f1fd9c1-3469-47d0-ad43-2647f638d622/"
-          }
-        ]
+        "name": "Developer portfolio",
+        "summary": "The repository behind this configurable static portfolio.",
+        "url": "https://github.com/username/username.github.io"
       }
     ]
   },
-  "github_projects": {
-    "title": "Projects on GitHub",
-    "mode": "featured",
-    "topic": "featured",
-    "max_repos": 6,
-    "excluded_repos": []
+  "contact": {
+    "heading": "Let’s build something useful.",
+    "summary": "Available for collaborations, speaking, and thoughtful product conversations.",
+    "primary_cta": {"label": "Connect on LinkedIn", "url": "https://www.linkedin.com/in/username/"},
+    "social_links": [
+      {"name": "GitHub", "url": "https://github.com/username"},
+      {"name": "LinkedIn", "url": "https://www.linkedin.com/in/username/"}
+    ]
   },
   "footer": {
-    "show_social_links": true,
+    "copyright": "Your Name",
     "show_built_with": true,
-    "built_with_text": "Built with ❤️ using vanilla JavaScript",
-    "tagline": "Let's connect and build something amazing together!"
+    "built_with_text": "Built with the Developer Portfolio v2 engine."
   }
 }

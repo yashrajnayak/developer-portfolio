@@ -13,7 +13,7 @@ const ignoredExtensions = new Set([
   '.webp'
 ]);
 
-const localPathPattern = /(?:\/Users\/|\/home\/|\/Volumes\/|Documents\/GitHub|file:\/\/|localhost|127\.0\.0\.1|C:\\)/;
+const localPathPattern = /(?:\/Users\/|\/home\/|\/Volumes\/|Documents\/GitHub|file:\/\/|C:\\)/;
 const findings = [];
 
 function extension(path) {

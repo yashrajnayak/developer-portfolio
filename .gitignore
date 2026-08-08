@@ -9,7 +9,6 @@ Thumbs.db
 
 # Dependencies
 node_modules/
-package-lock.json
 
 # IDE/Editor specific
 .vscode/
@@ -22,6 +21,8 @@ package-lock.json
 dist/
 build/
 out/
+playwright-report/
+test-results/
 
 # Environment variables
 .env

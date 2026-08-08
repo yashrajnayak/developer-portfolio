@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Developer Portfolio</title>
+  <rect width="64" height="64" rx="14" fill="#0b5cff"/>
+  <path d="m27 18-14 14 14 14M37 18l14 14-14 14" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+</svg>

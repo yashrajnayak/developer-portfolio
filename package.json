@@ -1,7 +1,33 @@
 {
+  "name": "developer-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A schema-driven, accessible developer portfolio generator for GitHub Pages.",
   "scripts": {
-    "build": "node scripts/build-assets.mjs",
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "migrate": "node scripts/migrate-config.mjs",
+    "validate:config": "node scripts/validate-config.mjs",
+    "validate:html": "html-validate dist/index.html",
+    "check:links": "node scripts/check-links.mjs",
     "check:paths": "node scripts/check-local-paths.mjs",
-    "validate": "node scripts/validate-config.mjs && npm run check:paths"
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "test:e2e": "playwright test",
+    "test": "npm run test:unit && npm run test:e2e",
+    "validate": "npm run validate:config && npm run build && npm run validate:html && npm run check:links && npm run check:paths && npm run test:unit",
+    "validate:all": "npm run validate && npm run test:e2e"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
+    "@playwright/test": "1.62.1",
+    "html-validate": "11.6.2"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

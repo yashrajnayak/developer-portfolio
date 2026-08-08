@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yashrajnayak/developer-portfolio/blob/v2.0.0/config.schema.json",
+  "title": "Developer Portfolio configuration",
+  "description": "Editor schema for Developer Portfolio v2 content.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "site", "person", "hero", "impact_metrics", "navigation", "projects", "experience", "proof", "open_source", "contact", "footer"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schema_version": {"const": 2},
+    "site": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["base_url", "language", "seo"],
+      "properties": {
+        "base_url": {"$ref": "#/$defs/httpUrl"},
+        "language": {"type": "string", "minLength": 2},
+        "seo": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["title", "description", "keywords", "og_image", "og_image_alt"],
+          "properties": {
+            "title": {"$ref": "#/$defs/nonEmptyString"},
+            "description": {"$ref": "#/$defs/nonEmptyString"},
+            "keywords": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+            "og_image": {"$ref": "#/$defs/urlOrAsset"},
+            "og_image_alt": {"$ref": "#/$defs/nonEmptyString"}
+          }
+        }
+      }
+    },
+    "person": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "professional_headline", "current_role", "organization", "location", "avatar", "github_username", "focus_areas", "languages"],
+      "properties": {
+        "name": {"$ref": "#/$defs/nonEmptyString"},
+        "professional_headline": {"$ref": "#/$defs/nonEmptyString"},
+        "current_role": {"$ref": "#/$defs/nonEmptyString"},
+        "organization": {"$ref": "#/$defs/nonEmptyString"},
+        "location": {"$ref": "#/$defs/nonEmptyString"},
+        "avatar": {"$ref": "#/$defs/urlOrAsset"},
+        "github_username": {"type": "string", "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$"},
+        "focus_areas": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+        "languages": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}}
+      }
+    },
+    "hero": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["heading", "summary", "primary_cta", "secondary_cta"],
+      "properties": {
+        "heading": {"$ref": "#/$defs/nonEmptyString"},
+        "summary": {"$ref": "#/$defs/nonEmptyString"},
+        "primary_cta": {"$ref": "#/$defs/link"},
+        "secondary_cta": {"$ref": "#/$defs/link"}
+      }
+    },
+    "impact_metrics": {"type": "array", "minItems": 1, "maxItems": 6, "items": {"$ref": "#/$defs/metric"}},
+    "navigation": {"type": "array", "minItems": 1, "maxItems": 6, "items": {"$ref": "#/$defs/navItem"}},
+    "projects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "items"],
+      "properties": {
+        "title": {"$ref": "#/$defs/nonEmptyString"},
+        "items": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/project"}}
+      }
+    },
+    "experience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "visible_count", "jobs"],
+      "properties": {
+        "title": {"$ref": "#/$defs/nonEmptyString"},
+        "visible_count": {"type": "integer", "minimum": 1},
+        "jobs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/job"}}
+      }
+    },
+    "proof": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "items"],
+      "properties": {
+        "title": {"$ref": "#/$defs/nonEmptyString"},
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"oneOf": [{"$ref": "#/$defs/nonEmptyString"}, {"$ref": "#/$defs/proofLink"}]}
+        }
+      }
+    },
+    "open_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "items"],
+      "properties": {
+        "title": {"$ref": "#/$defs/nonEmptyString"},
+        "items": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/workItem"}}
+      }
+    },
+    "contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["heading", "summary", "primary_cta", "social_links"],
+      "properties": {
+        "heading": {"$ref": "#/$defs/nonEmptyString"},
+        "summary": {"$ref": "#/$defs/nonEmptyString"},
+        "primary_cta": {"$ref": "#/$defs/link"},
+        "social_links": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/namedLink"}}
+      }
+    },
+    "footer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["copyright", "show_built_with", "built_with_text"],
+      "properties": {
+        "copyright": {"$ref": "#/$defs/nonEmptyString"},
+        "show_built_with": {"type": "boolean"},
+        "built_with_text": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "httpUrl": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "assetPath": {"type": "string", "pattern": "^(?:assets|media)/[A-Za-z0-9._/-]+$"},
+    "urlOrAsset": {"oneOf": [{"$ref": "#/$defs/httpUrl"}, {"$ref": "#/$defs/assetPath"}]},
+    "linkUrl": {"oneOf": [{"$ref": "#/$defs/httpUrl"}, {"type": "string", "pattern": "^#[a-z][a-z0-9-]*$"}]},
+    "link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "url"],
+      "properties": {"label": {"$ref": "#/$defs/nonEmptyString"}, "url": {"$ref": "#/$defs/linkUrl"}}
+    },
+    "namedLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url"],
+      "properties": {"name": {"$ref": "#/$defs/nonEmptyString"}, "url": {"$ref": "#/$defs/httpUrl"}}
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "label"],
+      "properties": {"value": {"$ref": "#/$defs/nonEmptyString"}, "label": {"$ref": "#/$defs/nonEmptyString"}}
+    },
+    "navItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "target"],
+      "properties": {"label": {"$ref": "#/$defs/nonEmptyString"}, "target": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"}}
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "alt"],
+      "properties": {
+        "src": {"$ref": "#/$defs/urlOrAsset"},
+        "alt": {"$ref": "#/$defs/nonEmptyString"},
+        "fit": {"enum": ["cover", "contain"]},
+        "position": {"type": "string"}
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "date", "role", "summary", "challenge", "actions", "outcomes", "featured", "media", "links"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+        "name": {"$ref": "#/$defs/nonEmptyString"},
+        "date": {"$ref": "#/$defs/nonEmptyString"},
+        "role": {"$ref": "#/$defs/nonEmptyString"},
+        "summary": {"$ref": "#/$defs/nonEmptyString"},
+        "challenge": {"$ref": "#/$defs/nonEmptyString"},
+        "actions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmptyString"}},
+        "outcomes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmptyString"}},
+        "featured": {"type": "boolean"},
+        "media": {"$ref": "#/$defs/media"},
+        "links": {"type": "array", "items": {"$ref": "#/$defs/link"}},
+        "description": {"type": "array", "items": {"$ref": "#/$defs/nonEmptyString"}, "deprecated": true},
+        "picture": {"$ref": "#/$defs/urlOrAsset", "deprecated": true},
+        "link": {"$ref": "#/$defs/link", "deprecated": true}
+      }
+    },
+    "job": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["company", "role", "date", "responsibilities", "logo", "logo_dark"],
+      "properties": {
+        "company": {"$ref": "#/$defs/nonEmptyString"},
+        "role": {"$ref": "#/$defs/nonEmptyString"},
+        "date": {"$ref": "#/$defs/nonEmptyString"},
+        "responsibilities": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmptyString"}},
+        "logo": {"$ref": "#/$defs/urlOrAsset"},
+        "logo_dark": {"$ref": "#/$defs/urlOrAsset"}
+      }
+    },
+    "proofLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url"],
+      "properties": {"name": {"$ref": "#/$defs/nonEmptyString"}, "url": {"$ref": "#/$defs/httpUrl"}}
+    },
+    "workItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "summary", "url"],
+      "properties": {
+        "name": {"$ref": "#/$defs/nonEmptyString"},
+        "summary": {"$ref": "#/$defs/nonEmptyString"},
+        "url": {"$ref": "#/$defs/httpUrl"},
+        "stars": {"type": "integer", "minimum": 0},
+        "language": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    }
+  }
+}
